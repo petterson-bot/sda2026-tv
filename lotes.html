@@ -92,7 +92,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .lv-canal-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(22px,2.8vw,40px);color:var(--br);line-height:1;}
 .lv-canal-val{font-size:clamp(8px,0.75vw,11px);color:var(--ci);}
 .lv-total{text-align:right;flex-shrink:0;}
-.lv-canal-foto{width:clamp(34px,3.5vw,52px);height:clamp(34px,3.5vw,52px);border-radius:50%;object-fit:cover;display:block;margin:0 auto 4px;}
+.lv-canal-foto{width:clamp(34px,3.5vw,52px);height:clamp(34px,3.5vw,52px);border-radius:50%;object-fit:cover;display:block;margin:0 auto 6px;}
 .lv-canal.t .lv-canal-foto{border:2px solid var(--az);box-shadow:0 0 10px rgba(33,150,243,.4);}
 .lv-canal.c .lv-canal-foto{border:2px solid var(--g);box-shadow:0 0 10px rgba(76,175,3,.4);}
 .lv-canal.o .lv-canal-foto{border:2px solid var(--am);box-shadow:0 0 10px rgba(255,152,0,.4);}
@@ -252,9 +252,9 @@ function renderLvCard(lote, fotos) {
       pctHtml+
     '</div>'+
     '<div class="lv-canais">'+
-      '<div class="lv-canal t"><div class="lv-canal-nome">Tráfego</div><div style="display:flex;align-items:center;gap:8px;">'+fotoTag(fotos.trafico,'T')+'<div class="lv-canal-qtd">'+lote.trafico.qtd+'</div></div><div class="lv-canal-val">'+fmtVal(lote.trafico.valor)+'</div></div>'+
-      '<div class="lv-canal c"><div class="lv-canal-nome">Comercial</div><div style="display:flex;align-items:center;gap:8px;">'+fotoTag(fotos.comercial,'C')+'<div class="lv-canal-qtd">'+lote.comercial.qtd+'</div></div><div class="lv-canal-val">'+fmtVal(lote.comercial.valor)+'</div></div>'+
-      '<div class="lv-canal o"><div class="lv-canal-nome">Orgânico</div><div style="display:flex;align-items:center;gap:8px;">'+fotoTag(fotos.organico,'O')+'<div class="lv-canal-qtd">'+lote.organico.qtd+'</div></div><div class="lv-canal-val">'+fmtVal(lote.organico.valor)+'</div></div>'+
+      '<div class="lv-canal t">'+fotoTag(fotos.trafico,'T')+'<div class="lv-canal-nome">Tráfego</div><div class="lv-canal-qtd">'+lote.trafico.qtd+'</div><div class="lv-canal-val">'+fmtVal(lote.trafico.valor)+'</div></div>'+
+      '<div class="lv-canal c">'+fotoTag(fotos.comercial,'C')+'<div class="lv-canal-nome">Comercial</div><div class="lv-canal-qtd">'+lote.comercial.qtd+'</div><div class="lv-canal-val">'+fmtVal(lote.comercial.valor)+'</div></div>'+
+      '<div class="lv-canal o">'+fotoTag(fotos.organico,'O')+'<div class="lv-canal-nome">Orgânico</div><div class="lv-canal-qtd">'+lote.organico.qtd+'</div><div class="lv-canal-val">'+fmtVal(lote.organico.valor)+'</div></div>'+
     '</div>'+
     '<div class="lv-total"><div class="lv-total-label">Total</div><div class="lv-total-qtd">'+lote.totalQtd+'</div><div class="lv-total-val">'+fmtVal(lote.totalValor)+'</div></div>';
 }
