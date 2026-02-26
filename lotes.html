@@ -83,7 +83,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .lv-card{background:linear-gradient(90deg,rgba(76,175,3,.12),rgba(76,175,3,.04));border:1px solid rgba(76,175,3,.4);border-radius:14px;padding:clamp(10px,1.4vh,18px) clamp(14px,1.6vw,24px);display:flex;flex-direction:column;gap:clamp(8px,1vh,14px);}
 .lv-nome{font-family:"Bebas Neue",sans-serif;font-size:clamp(18px,2.2vw,32px);letter-spacing:2px;color:var(--g);flex:1;}
 .lv-badge{background:var(--g);color:#000;font-family:"Bebas Neue",sans-serif;font-size:clamp(9px,0.85vw,12px);letter-spacing:2px;padding:3px 10px;border-radius:50px;flex-shrink:0;}
-.lv-canais{display:flex;gap:clamp(8px,1vw,16px);}
+.lv-canais{display:flex;gap:clamp(30px,5vw,80px);justify-content:center;flex:1;}
 .lv-canal{text-align:center;}
 .lv-canal-nome{font-size:clamp(7px,0.7vw,10px);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ci);}
 .lv-canal.t .lv-canal-nome{color:var(--az);}
@@ -92,10 +92,10 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .lv-canal-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(22px,2.8vw,40px);color:var(--br);line-height:1;}
 .lv-canal-val{font-size:clamp(8px,0.75vw,11px);color:var(--ci);}
 .lv-total{text-align:right;flex-shrink:0;}
-.lv-canal-foto{width:clamp(34px,3.5vw,52px);height:clamp(34px,3.5vw,52px);border-radius:50%;object-fit:cover;display:block;margin:0 auto 6px;}
-.lv-canal.t .lv-canal-foto{border:2px solid var(--az);box-shadow:0 0 10px rgba(33,150,243,.4);}
-.lv-canal.c .lv-canal-foto{border:2px solid var(--g);box-shadow:0 0 10px rgba(76,175,3,.4);}
-.lv-canal.o .lv-canal-foto{border:2px solid var(--am);box-shadow:0 0 10px rgba(255,152,0,.4);}
+.lv-canal-foto{width:clamp(52px,6vw,88px);height:clamp(52px,6vw,88px);border-radius:50%;object-fit:cover;display:block;margin:0 auto 8px;}
+.lv-canal.t .lv-canal-foto{border:3px solid var(--az);box-shadow:0 0 16px rgba(33,150,243,.5);}
+.lv-canal.c .lv-canal-foto{border:3px solid var(--g);box-shadow:0 0 16px rgba(76,175,3,.5);}
+.lv-canal.o .lv-canal-foto{border:3px solid var(--am);box-shadow:0 0 16px rgba(255,152,0,.5);}
 .lv-pct{display:inline-flex;align-items:center;font-family:"Bebas Neue",sans-serif;font-size:clamp(11px,1.1vw,16px);letter-spacing:1px;padding:3px 12px;border-radius:20px;margin-left:10px;flex-shrink:0;}
 .lv-pct.up{background:rgba(76,175,3,.15);color:var(--g);border:1px solid rgba(76,175,3,.4);}
 .lv-pct.down{background:rgba(255,68,68,.12);color:var(--la);border:1px solid rgba(255,68,68,.3);}
