@@ -252,9 +252,9 @@ function renderLvCard(lote, fotos) {
       pctHtml+
     '</div>'+
     '<div class="lv-canais">'+
-      '<div class="lv-canal t" style="display:flex;align-items:center;gap:10px;flex:1;">'+fotoTag(fotos.trafico,'T')+'<div><div class="lv-canal-nome">Tráfego</div><div class="lv-canal-qtd">'+lote.trafico.qtd+'</div><div class="lv-canal-val">'+fmtVal(lote.trafico.valor)+'</div></div></div>'+
-      '<div class="lv-canal c" style="display:flex;align-items:center;gap:10px;flex:1;">'+fotoTag(fotos.comercial,'C')+'<div><div class="lv-canal-nome">Comercial</div><div class="lv-canal-qtd">'+lote.comercial.qtd+'</div><div class="lv-canal-val">'+fmtVal(lote.comercial.valor)+'</div></div></div>'+
-      '<div class="lv-canal o" style="display:flex;align-items:center;gap:10px;flex:1;">'+fotoTag(fotos.organico,'O')+'<div><div class="lv-canal-nome">Orgânico</div><div class="lv-canal-qtd">'+lote.organico.qtd+'</div><div class="lv-canal-val">'+fmtVal(lote.organico.valor)+'</div></div></div>'+
+      '<div class="lv-canal t"><div class="lv-canal-nome">Tráfego</div><div style="display:flex;align-items:center;gap:8px;">'+fotoTag(fotos.trafico,'T')+'<div class="lv-canal-qtd">'+lote.trafico.qtd+'</div></div><div class="lv-canal-val">'+fmtVal(lote.trafico.valor)+'</div></div>'+
+      '<div class="lv-canal c"><div class="lv-canal-nome">Comercial</div><div style="display:flex;align-items:center;gap:8px;">'+fotoTag(fotos.comercial,'C')+'<div class="lv-canal-qtd">'+lote.comercial.qtd+'</div></div><div class="lv-canal-val">'+fmtVal(lote.comercial.valor)+'</div></div>'+
+      '<div class="lv-canal o"><div class="lv-canal-nome">Orgânico</div><div style="display:flex;align-items:center;gap:8px;">'+fotoTag(fotos.organico,'O')+'<div class="lv-canal-qtd">'+lote.organico.qtd+'</div></div><div class="lv-canal-val">'+fmtVal(lote.organico.valor)+'</div></div>'+
     '</div>'+
     '<div class="lv-total"><div class="lv-total-label">Total</div><div class="lv-total-qtd">'+lote.totalQtd+'</div><div class="lv-total-val">'+fmtVal(lote.totalValor)+'</div></div>';
 }
