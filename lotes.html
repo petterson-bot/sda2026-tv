@@ -9,39 +9,61 @@
 :root{--g:#4caf03;--g2:#3a8a02;--g3:#2d6e02;--b:#000;--c:#0f0f0f;--c2:#141414;--br:#fff;--ci:#777;--la:#ff4444;--az:#2196f3;--am:#ff9800;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{width:100%;height:100%;background:var(--b);color:var(--br);font-family:"Barlow Condensed",sans-serif;overflow:hidden;}
-body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 55% 70% at 8% 50%,rgba(76,175,3,.07),transparent 65%);pointer-events:none;z-index:0;}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 55% 70% at 8% 50%,rgba(76,175,3,.07),transparent 65%),radial-gradient(ellipse 50% 60% at 92% 50%,rgba(76,175,3,.04),transparent 65%);pointer-events:none;z-index:0;}
 
 .page{
   position:relative;z-index:1;
   display:grid;
-  grid-template-columns:clamp(190px,16vw,270px) 1fr;
+  grid-template-columns:clamp(230px,20vw,340px) 1fr;
   grid-template-rows:1fr 40px;
   width:100vw;height:100vh;
 }
 
-/* ── LATERAL ESQUERDA ── */
+/* ══════════════════════════════════════
+   LATERAL ESQUERDA — igual ao ranking
+══════════════════════════════════════ */
 .esq{
   grid-column:1;grid-row:1;
   background:linear-gradient(170deg,#0c0c0c,#000);
   border-right:2px solid var(--g);
   display:flex;flex-direction:column;align-items:center;
-  padding:clamp(14px,2.2vh,30px) clamp(10px,1.2vw,20px);
-  gap:clamp(8px,1.2vh,14px);
+  padding:clamp(12px,2vh,24px) clamp(10px,1.2vw,20px);
+  gap:clamp(6px,1vh,12px);
   position:relative;overflow:hidden;
 }
-.esq::before{content:"";position:absolute;top:-60px;left:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(76,175,3,.12),transparent 70%);pointer-events:none;}
-.logo{font-family:"Bebas Neue",sans-serif;font-size:clamp(46px,6vw,86px);line-height:1;letter-spacing:4px;color:var(--br);text-align:center;}
+.esq::before{content:"";position:absolute;top:-60px;left:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(76,175,3,.12),transparent 70%);pointer-events:none;}
+.logo{font-family:"Bebas Neue",sans-serif;font-size:clamp(48px,6.5vw,86px);line-height:1;letter-spacing:4px;color:var(--br);text-align:center;}
 .logo span{color:var(--g);}
-.logo-sub{font-size:clamp(8px,0.8vw,12px);font-weight:700;letter-spacing:6px;color:var(--g);text-transform:uppercase;text-align:center;}
-.sep{width:40px;height:2px;background:var(--g);}
-.tit{font-family:"Bebas Neue",sans-serif;font-size:clamp(18px,2.2vw,32px);letter-spacing:3px;color:var(--br);text-align:center;line-height:1.05;}
+.logo-sub{font-size:clamp(9px,0.9vw,13px);font-weight:700;letter-spacing:6px;color:var(--g);text-transform:uppercase;text-align:center;}
+.sep{width:44px;height:2px;background:var(--g);}
+.tit{font-family:"Bebas Neue",sans-serif;font-size:clamp(20px,2.5vw,34px);letter-spacing:3px;color:var(--br);text-align:center;line-height:1.05;}
 .tit span{color:var(--g);}
-.rod{margin-top:auto;text-align:center;}
-.rel{font-family:"Bebas Neue",sans-serif;font-size:clamp(30px,3.8vw,52px);letter-spacing:4px;color:var(--g);line-height:1;}
-.dat{font-size:clamp(8px,0.7vw,10px);font-weight:600;letter-spacing:2px;color:var(--ci);text-transform:uppercase;margin-top:2px;}
-.atu{font-size:clamp(7px,0.65vw,9px);color:#333;margin-top:4px;}
 
-/* ── ÁREA PRINCIPAL ── */
+/* Caixa de meta — igual ao ranking */
+.mbox{width:100%;background:rgba(76,175,3,.07);border:1px solid rgba(76,175,3,.25);border-radius:12px;padding:clamp(8px,1.2vh,14px) clamp(10px,1vw,16px);}
+.mtit{font-size:clamp(8px,0.75vw,10px);font-weight:700;letter-spacing:3px;color:var(--g);text-transform:uppercase;margin-bottom:6px;text-align:center;}
+.mgrande{display:flex;align-items:flex-end;justify-content:center;gap:6px;margin-bottom:6px;}
+.mnum{font-family:"Bebas Neue",sans-serif;font-size:clamp(42px,5.5vw,68px);line-height:1;color:var(--br);}
+.mde{font-family:"Bebas Neue",sans-serif;font-size:clamp(16px,1.8vw,26px);color:var(--ci);padding-bottom:2px;}
+.bbg{background:#1a1a1a;border-radius:50px;height:9px;overflow:hidden;margin-bottom:5px;}
+.bbf{height:9px;border-radius:50px;background:linear-gradient(90deg,var(--g2),var(--g));transition:width 1s;}
+.minfo{display:flex;justify-content:space-between;font-size:clamp(9px,0.8vw,12px);font-weight:700;}
+.mok{color:var(--g);}.mfalta{color:var(--la);}
+
+/* Caixa faltam — igual ao ranking */
+.fbox{width:100%;background:rgba(255,68,68,.06);border:1px solid rgba(255,68,68,.2);border-radius:10px;padding:clamp(6px,0.8vh,10px);text-align:center;}
+.fnum{font-family:"Bebas Neue",sans-serif;font-size:clamp(28px,3.8vw,48px);line-height:1;color:var(--la);}
+.ftxt{font-size:clamp(8px,0.7vw,10px);font-weight:700;letter-spacing:2px;color:rgba(255,68,68,.55);text-transform:uppercase;}
+
+/* Relógio — igual ao ranking */
+.rod{text-align:center;margin-top:auto;padding-top:6px;}
+.rel{font-family:"Bebas Neue",sans-serif;font-size:clamp(26px,3.2vw,40px);letter-spacing:4px;color:var(--g);line-height:1;}
+.dat{font-size:clamp(8px,0.7vw,10px);font-weight:600;letter-spacing:2px;color:var(--ci);text-transform:uppercase;margin-top:2px;}
+.atu{font-size:clamp(7px,0.65vw,9px);color:#333;margin-top:2px;}
+
+/* ══════════════════════════════════════
+   ÁREA PRINCIPAL
+══════════════════════════════════════ */
 .main{
   grid-column:2;grid-row:1;
   display:flex;flex-direction:column;
@@ -58,57 +80,49 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 }
 .dot{display:inline-block;width:7px;height:7px;background:var(--g);border-radius:50%;animation:pulse 1.5s infinite;flex-shrink:0;}
 
-/* 1. TOTAL */
-.total-area{
-  flex-shrink:0;
-  background:rgba(76,175,3,.05);border:1px solid rgba(76,175,3,.2);
-  border-radius:13px;
-  padding:clamp(10px,1.4vh,16px) clamp(14px,1.8vw,26px);
-  display:flex;align-items:center;gap:clamp(14px,2vw,32px);
-}
-.total-left{flex:1;display:flex;flex-direction:column;gap:3px;}
-.total-label{font-size:clamp(8px,0.72vw,10px);font-weight:700;letter-spacing:3px;color:var(--g);text-transform:uppercase;}
-.total-nums{display:flex;align-items:flex-end;gap:7px;}
-.total-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(40px,5.2vw,74px);color:var(--br);line-height:1;}
-.total-de{font-family:"Bebas Neue",sans-serif;font-size:clamp(16px,1.9vw,28px);color:var(--ci);padding-bottom:3px;}
-.total-bar-bg{background:#1a1a1a;border-radius:50px;height:9px;overflow:hidden;margin-bottom:4px;}
-.total-bar-fill{height:9px;border-radius:50px;background:linear-gradient(90deg,var(--g2),var(--g));transition:width 1s;}
-.total-bar-info{display:flex;justify-content:space-between;font-size:clamp(9px,0.78vw,11px);font-weight:700;}
-.total-ok{color:var(--g);}.total-rest{color:var(--la);}
-.total-falt{
-  flex-shrink:0;text-align:center;
-  background:rgba(255,68,68,.06);border:1px solid rgba(255,68,68,.22);
-  border-radius:11px;padding:clamp(8px,1vh,13px) clamp(12px,1.5vw,22px);
-  min-width:clamp(90px,9vw,148px);
-}
-.total-falt-num{font-family:"Bebas Neue",sans-serif;font-size:clamp(32px,4.5vw,64px);color:var(--la);line-height:1;}
-.total-falt-txt{font-size:clamp(7px,0.62vw,9px);font-weight:700;letter-spacing:2px;color:rgba(255,68,68,.5);text-transform:uppercase;margin-top:2px;}
-
-/* 2. LOTE VIGENTE */
+/* ── LOTE VIGENTE — card com números grandes por canal ── */
 .lote-vigente{flex-shrink:0;}
 .lv-card{
   margin-top:5px;
-  background:linear-gradient(90deg,rgba(76,175,3,.1),rgba(76,175,3,.03));
-  border:1px solid rgba(76,175,3,.35);border-radius:11px;
-  padding:clamp(7px,1.1vh,14px) clamp(12px,1.4vw,20px);
-  display:flex;align-items:center;gap:clamp(8px,1.3vw,20px);
+  background:linear-gradient(135deg,rgba(76,175,3,.1),rgba(76,175,3,.03));
+  border:1px solid rgba(76,175,3,.4);border-radius:14px;
+  padding:clamp(10px,1.5vh,20px) clamp(14px,1.8vw,26px);
+  display:flex;align-items:center;gap:clamp(12px,2vw,32px);
 }
-.lv-nome{font-family:"Bebas Neue",sans-serif;font-size:clamp(15px,1.9vw,28px);letter-spacing:2px;color:var(--g);flex:1;}
-.lv-badge{background:var(--g);color:#000;font-family:"Bebas Neue",sans-serif;font-size:clamp(7px,0.7vw,10px);letter-spacing:2px;padding:2px 9px;border-radius:50px;flex-shrink:0;}
-.lv-canais{display:flex;gap:clamp(8px,1.3vw,20px);}
-.lv-canal{text-align:center;min-width:clamp(40px,4.5vw,64px);}
-.lv-canal-nome{font-size:clamp(7px,0.62vw,9px);font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+/* Nome + badge */
+.lv-info{display:flex;flex-direction:column;gap:6px;min-width:clamp(100px,12vw,180px);}
+.lv-badge{display:inline-block;background:var(--g);color:#000;font-family:"Bebas Neue",sans-serif;font-size:clamp(8px,0.75vw,11px);letter-spacing:2px;padding:2px 10px;border-radius:50px;align-self:flex-start;}
+.lv-nome{font-family:"Bebas Neue",sans-serif;font-size:clamp(18px,2.2vw,32px);letter-spacing:2px;color:var(--g);line-height:1;}
+
+/* 3 canais com números grandes */
+.lv-canais{display:flex;gap:clamp(12px,2vw,36px);flex:1;justify-content:center;}
+.lv-canal{
+  display:flex;flex-direction:column;align-items:center;
+  background:rgba(0,0,0,.3);border-radius:12px;
+  padding:clamp(8px,1.2vh,16px) clamp(12px,1.6vw,24px);
+  flex:1;max-width:clamp(110px,14vw,200px);
+  position:relative;overflow:hidden;
+}
+.lv-canal::before{content:"";position:absolute;bottom:0;left:0;right:0;height:3px;}
+.lv-canal.t::before{background:var(--az);}
+.lv-canal.c::before{background:var(--g);}
+.lv-canal.o::before{background:var(--am);}
+.lv-canal-nome{font-size:clamp(8px,0.75vw,11px);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
 .lv-canal.t .lv-canal-nome{color:var(--az);}
 .lv-canal.c .lv-canal-nome{color:var(--g);}
 .lv-canal.o .lv-canal-nome{color:var(--am);}
-.lv-canal-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(18px,2.4vw,34px);color:var(--br);line-height:1;}
-.lv-canal-val{font-size:clamp(7px,0.62vw,9px);color:var(--ci);}
-.lv-total{text-align:right;flex-shrink:0;}
-.lv-total-label{font-size:clamp(7px,0.62vw,9px);font-weight:700;letter-spacing:1px;color:var(--ci);text-transform:uppercase;}
-.lv-total-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(26px,3.6vw,52px);color:var(--g);line-height:1;text-shadow:0 0 16px rgba(76,175,3,.4);}
-.lv-total-val{font-size:clamp(8px,0.75vw,11px);font-weight:700;color:var(--ci);}
+.lv-canal-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(36px,5.5vw,80px);line-height:1;color:var(--br);}
+.lv-canal.t .lv-canal-qtd{color:var(--az);}
+.lv-canal.c .lv-canal-qtd{color:var(--g);}
+.lv-canal.o .lv-canal-qtd{color:var(--am);}
+.lv-canal-val{font-size:clamp(9px,0.85vw,12px);color:var(--ci);margin-top:2px;}
+/* Total do lote vigente */
+.lv-total{display:flex;flex-direction:column;align-items:center;min-width:clamp(80px,9vw,140px);}
+.lv-total-label{font-size:clamp(8px,0.72vw,10px);font-weight:700;letter-spacing:2px;color:var(--ci);text-transform:uppercase;}
+.lv-total-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(48px,7vw,100px);color:var(--g);line-height:1;text-shadow:0 0 24px rgba(76,175,3,.5);}
+.lv-total-val{font-size:clamp(10px,0.9vw,13px);font-weight:700;color:var(--ci);}
 
-/* 3. TODOS OS LOTES */
+/* ── TODOS OS LOTES ── */
 .lotes-area{flex:1;display:flex;flex-direction:column;gap:5px;overflow:hidden;min-height:0;}
 .lotes-scroll{flex:1;display:flex;flex-direction:column;gap:clamp(3px,0.5vh,6px);overflow:hidden;}
 .lote-card{
@@ -116,8 +130,8 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
   padding:clamp(5px,0.8vh,10px) clamp(9px,1.1vw,16px);
   display:flex;align-items:center;gap:clamp(7px,1vw,16px);flex-shrink:0;
 }
-.lote-card-nome{font-family:"Bebas Neue",sans-serif;font-size:clamp(11px,1.2vw,17px);letter-spacing:2px;color:var(--br);min-width:clamp(80px,10vw,155px);}
-.lote-card-nome-sub{font-size:clamp(7px,0.62vw,9px);color:var(--ci);margin-top:1px;}
+.lote-card-nome{font-family:"Bebas Neue",sans-serif;font-size:clamp(11px,1.2vw,18px);letter-spacing:2px;color:var(--br);min-width:clamp(80px,10vw,160px);}
+.lote-card-sub{font-size:clamp(7px,0.62vw,9px);color:var(--ci);margin-top:1px;}
 .lote-canais{display:flex;gap:clamp(7px,1vw,18px);flex:1;}
 .lote-canal{display:flex;align-items:center;gap:4px;flex:1;}
 .lote-canal-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
@@ -129,13 +143,13 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .lote-canal.t .lote-canal-nome{color:var(--az);}
 .lote-canal.c .lote-canal-nome{color:var(--g);}
 .lote-canal.o .lote-canal-nome{color:var(--am);}
-.lote-canal-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(14px,1.7vw,24px);color:var(--br);line-height:1;}
+.lote-canal-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(14px,1.8vw,26px);color:var(--br);line-height:1;}
 .lote-canal-val{font-size:clamp(6px,0.6vw,8px);color:var(--ci);}
 .lote-total{text-align:right;flex-shrink:0;min-width:clamp(38px,4.5vw,68px);}
-.lote-total-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(18px,2.3vw,34px);color:var(--g);line-height:1;}
+.lote-total-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(20px,2.6vw,36px);color:var(--g);line-height:1;}
 .lote-total-val{font-size:clamp(7px,0.62vw,9px);color:var(--ci);}
 
-/* 4. POR CANAL */
+/* ── POR CANAL ── */
 .canais-area{flex-shrink:0;}
 .canais-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(7px,1vw,14px);margin-top:5px;}
 .canal-card{border-radius:10px;padding:clamp(7px,1vh,12px) clamp(10px,1.2vw,16px);display:flex;align-items:center;gap:clamp(8px,1vw,14px);}
@@ -148,7 +162,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .canal-card.c .canal-card-label{color:var(--g);}
 .canal-card.o .canal-card-label{color:var(--am);}
 .canal-card-nums{text-align:right;flex-shrink:0;}
-.canal-card-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(22px,3vw,44px);color:var(--br);line-height:1;}
+.canal-card-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(24px,3.2vw,46px);color:var(--br);line-height:1;}
 .canal-card-val{font-size:clamp(8px,0.75vw,11px);color:var(--ci);}
 
 /* TICKER */
@@ -173,12 +187,31 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 
 <div class="page" id="page" style="display:none">
 
-  <!-- LATERAL ESQUERDA -->
+  <!-- LATERAL ESQUERDA — idêntica ao ranking -->
   <div class="esq">
     <div class="logo">SD<span>A</span></div>
     <div class="logo-sub">Ao Vivo 2026</div>
     <div class="sep"></div>
     <div class="tit">TOTAL DE<br><span>INGRESSOS</span></div>
+
+    <div class="mbox">
+      <div class="mtit">Total Geral · Meta <span id="m-meta">1271</span></div>
+      <div class="mgrande">
+        <div class="mnum" id="m-tot">—</div>
+        <div class="mde">/ <span id="m-meta2">1271</span></div>
+      </div>
+      <div class="bbg"><div class="bbf" id="m-bar" style="width:0%"></div></div>
+      <div class="minfo">
+        <span class="mok" id="m-pct">—</span>
+        <span class="mfalta" id="m-rest">—</span>
+      </div>
+    </div>
+
+    <div class="fbox">
+      <div class="fnum" id="m-falt">—</div>
+      <div class="ftxt">ingressos restantes</div>
+    </div>
+
     <div class="rod">
       <div class="rel" id="rel">--:--:--</div>
       <div class="dat" id="dat">—</div>
@@ -189,29 +222,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
   <!-- ÁREA PRINCIPAL -->
   <div class="main">
 
-    <!-- 1. TOTAL DE INGRESSOS -->
-    <div class="total-area">
-      <div class="total-left">
-        <div class="total-label">Total Geral · Meta 1271</div>
-        <div class="total-nums">
-          <div class="total-qtd" id="tot-qtd">—</div>
-          <div class="total-de">/ 1271</div>
-        </div>
-        <div>
-          <div class="total-bar-bg"><div class="total-bar-fill" id="tot-bar" style="width:0%"></div></div>
-          <div class="total-bar-info">
-            <span class="total-ok" id="tot-pct">—</span>
-            <span class="total-rest" id="tot-rest">—</span>
-          </div>
-        </div>
-      </div>
-      <div class="total-falt">
-        <div class="total-falt-num" id="tot-falt">—</div>
-        <div class="total-falt-txt">ingressos restantes</div>
-      </div>
-    </div>
-
-    <!-- 2. LOTE VIGENTE -->
+    <!-- LOTE VIGENTE -->
     <div class="lote-vigente">
       <div class="panel-tit"><span class="dot"></span>Lote Vigente</div>
       <div class="lv-card" id="lv-card">
@@ -219,13 +230,13 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
       </div>
     </div>
 
-    <!-- 3. TODOS OS LOTES -->
+    <!-- TODOS OS LOTES -->
     <div class="lotes-area">
       <div class="panel-tit"><span class="dot"></span>Todos os Lotes</div>
       <div class="lotes-scroll" id="lotes-scroll"></div>
     </div>
 
-    <!-- 4. POR CANAL -->
+    <!-- POR CANAL -->
     <div class="canais-area">
       <div class="panel-tit"><span class="dot"></span>Por Canal</div>
       <div class="canais-row">
@@ -269,27 +280,61 @@ function fmtVal(v) {
 }
 
 function renderLvCard(lote) {
-  return '<div class="lv-nome">'+lote.nome+'</div>'+
-    '<div class="lv-badge">VIGENTE</div>'+
-    '<div class="lv-canais">'+
-      '<div class="lv-canal t"><div class="lv-canal-nome">Tráfego</div><div class="lv-canal-qtd">'+lote.trafico.qtd+'</div><div class="lv-canal-val">'+fmtVal(lote.trafico.valor)+'</div></div>'+
-      '<div class="lv-canal c"><div class="lv-canal-nome">Comercial</div><div class="lv-canal-qtd">'+lote.comercial.qtd+'</div><div class="lv-canal-val">'+fmtVal(lote.comercial.valor)+'</div></div>'+
-      '<div class="lv-canal o"><div class="lv-canal-nome">Orgânico</div><div class="lv-canal-qtd">'+lote.organico.qtd+'</div><div class="lv-canal-val">'+fmtVal(lote.organico.valor)+'</div></div>'+
+  return '<div class="lv-info">'+
+      '<div class="lv-badge">VIGENTE</div>'+
+      '<div class="lv-nome">'+lote.nome+'</div>'+
     '</div>'+
-    '<div class="lv-total"><div class="lv-total-label">Total</div><div class="lv-total-qtd">'+lote.totalQtd+'</div><div class="lv-total-val">'+fmtVal(lote.totalValor)+'</div></div>';
+    '<div class="lv-canais">'+
+      '<div class="lv-canal t">'+
+        '<div class="lv-canal-nome">Tráfego</div>'+
+        '<div class="lv-canal-qtd">'+lote.trafico.qtd+'</div>'+
+        '<div class="lv-canal-val">'+fmtVal(lote.trafico.valor)+'</div>'+
+      '</div>'+
+      '<div class="lv-canal c">'+
+        '<div class="lv-canal-nome">Comercial</div>'+
+        '<div class="lv-canal-qtd">'+lote.comercial.qtd+'</div>'+
+        '<div class="lv-canal-val">'+fmtVal(lote.comercial.valor)+'</div>'+
+      '</div>'+
+      '<div class="lv-canal o">'+
+        '<div class="lv-canal-nome">Orgânico</div>'+
+        '<div class="lv-canal-qtd">'+lote.organico.qtd+'</div>'+
+        '<div class="lv-canal-val">'+fmtVal(lote.organico.valor)+'</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="lv-total">'+
+      '<div class="lv-total-label">Total</div>'+
+      '<div class="lv-total-qtd">'+lote.totalQtd+'</div>'+
+      '<div class="lv-total-val">'+fmtVal(lote.totalValor)+'</div>'+
+    '</div>';
 }
 
 function renderLoteCard(lote) {
   var el = document.createElement('div');
   el.className = 'lote-card';
   el.innerHTML =
-    '<div><div class="lote-card-nome">'+lote.nome+'</div><div class="lote-card-nome-sub">'+fmtVal(lote.totalValor)+'</div></div>'+
+    '<div><div class="lote-card-nome">'+lote.nome+'</div>'+
+    '<div class="lote-card-sub">'+fmtVal(lote.totalValor)+'</div></div>'+
     '<div class="lote-canais">'+
-      '<div class="lote-canal t"><div class="lote-canal-dot"></div><div class="lote-canal-info"><div class="lote-canal-nome">Tráfego</div><div class="lote-canal-qtd">'+lote.trafico.qtd+'</div><div class="lote-canal-val">'+fmtVal(lote.trafico.valor)+'</div></div></div>'+
-      '<div class="lote-canal c"><div class="lote-canal-dot"></div><div class="lote-canal-info"><div class="lote-canal-nome">Comercial</div><div class="lote-canal-qtd">'+lote.comercial.qtd+'</div><div class="lote-canal-val">'+fmtVal(lote.comercial.valor)+'</div></div></div>'+
-      '<div class="lote-canal o"><div class="lote-canal-dot"></div><div class="lote-canal-info"><div class="lote-canal-nome">Orgânico</div><div class="lote-canal-qtd">'+lote.organico.qtd+'</div><div class="lote-canal-val">'+fmtVal(lote.organico.valor)+'</div></div></div>'+
+      '<div class="lote-canal t"><div class="lote-canal-dot"></div><div class="lote-canal-info">'+
+        '<div class="lote-canal-nome">Tráfego</div>'+
+        '<div class="lote-canal-qtd">'+lote.trafico.qtd+'</div>'+
+        '<div class="lote-canal-val">'+fmtVal(lote.trafico.valor)+'</div>'+
+      '</div></div>'+
+      '<div class="lote-canal c"><div class="lote-canal-dot"></div><div class="lote-canal-info">'+
+        '<div class="lote-canal-nome">Comercial</div>'+
+        '<div class="lote-canal-qtd">'+lote.comercial.qtd+'</div>'+
+        '<div class="lote-canal-val">'+fmtVal(lote.comercial.valor)+'</div>'+
+      '</div></div>'+
+      '<div class="lote-canal o"><div class="lote-canal-dot"></div><div class="lote-canal-info">'+
+        '<div class="lote-canal-nome">Orgânico</div>'+
+        '<div class="lote-canal-qtd">'+lote.organico.qtd+'</div>'+
+        '<div class="lote-canal-val">'+fmtVal(lote.organico.valor)+'</div>'+
+      '</div></div>'+
     '</div>'+
-    '<div class="lote-total"><div class="lote-total-qtd">'+lote.totalQtd+'</div><div class="lote-total-val">'+fmtVal(lote.totalValor)+'</div></div>';
+    '<div class="lote-total">'+
+      '<div class="lote-total-qtd">'+lote.totalQtd+'</div>'+
+      '<div class="lote-total-val">'+fmtVal(lote.totalValor)+'</div>'+
+    '</div>';
   return el;
 }
 
@@ -298,12 +343,14 @@ function render(d) {
   var pct  = META > 0 ? (tot/META*100) : 0;
   var falt = Math.max(META - tot, 0);
 
-  document.getElementById('tot-qtd').textContent  = tot;
-  document.getElementById('tot-bar').style.width  = Math.min(pct,100).toFixed(1)+'%';
-  document.getElementById('tot-pct').textContent  = pct.toFixed(1)+'% atingido';
-  document.getElementById('tot-rest').textContent = (falt/META*100).toFixed(1)+'% restante';
-  document.getElementById('tot-falt').textContent = falt;
+  // Lateral esquerda
+  document.getElementById('m-tot').textContent   = tot;
+  document.getElementById('m-bar').style.width   = Math.min(pct,100).toFixed(1)+'%';
+  document.getElementById('m-pct').textContent   = pct.toFixed(1)+'% atingido';
+  document.getElementById('m-rest').textContent  = (falt/META*100).toFixed(1)+'% restante';
+  document.getElementById('m-falt').textContent  = falt;
 
+  // Canais
   document.getElementById('c-traf-qtd').textContent = d.totalGeral.trafico.qtd;
   document.getElementById('c-traf-val').textContent  = fmtVal(d.totalGeral.trafico.valor);
   document.getElementById('c-com-qtd').textContent   = d.totalGeral.comercial.qtd;
@@ -313,10 +360,12 @@ function render(d) {
 
   document.getElementById('atu').textContent = 'Dados: '+d.ts;
 
+  // Lote vigente
   if (d.lotes && d.lotes.length > 0) {
     document.getElementById('lv-card').innerHTML = renderLvCard(d.lotes[0]);
   }
 
+  // Demais lotes
   var scroll = document.getElementById('lotes-scroll');
   scroll.innerHTML = '';
   d.lotes.forEach(function(lote, i) {
@@ -324,11 +373,12 @@ function render(d) {
     scroll.appendChild(renderLoteCard(lote));
   });
 
+  // Ticker
   var tk = [
     'TOTAL: '+tot+' / '+META+'  ·  '+fmtVal(d.totalGeral.valor),
-    'TRÁFEGO: '+d.totalGeral.trafico.qtd+' ingressos  ·  '+fmtVal(d.totalGeral.trafico.valor),
-    'COMERCIAL: '+d.totalGeral.comercial.qtd+' ingressos  ·  '+fmtVal(d.totalGeral.comercial.valor),
-    'ORGÂNICO: '+d.totalGeral.organico.qtd+' ingressos  ·  '+fmtVal(d.totalGeral.organico.valor)
+    'TRÁFEGO: '+d.totalGeral.trafico.qtd+'  ·  '+fmtVal(d.totalGeral.trafico.valor),
+    'COMERCIAL: '+d.totalGeral.comercial.qtd+'  ·  '+fmtVal(d.totalGeral.comercial.valor),
+    'ORGÂNICO: '+d.totalGeral.organico.qtd+'  ·  '+fmtVal(d.totalGeral.organico.valor)
   ];
   document.getElementById('tkc').textContent = tk.join('     ·     ');
 
