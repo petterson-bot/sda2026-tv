@@ -165,8 +165,8 @@ function render(d) {
   var geralRow = document.getElementById('geral-row');
   geralRow.innerHTML = '';
   vs.forEach(function(v, i) {
-    var fotoHtml = v.foto
-      ? '<img src="' + v.foto + '" class="foto">'
+    var fotoHtml = "https://petterson-bot.github.io/sda2026-tv/" + v.nome.toLowerCase() + ".jpg"
+      ? '<img src="' + "https://petterson-bot.github.io/sda2026-tv/" + v.nome.toLowerCase() + ".jpg" + '" class="foto">'
       : '<div class="foto-ph">' + v.nome[0] + '</div>';
     var pctV = meta > 0 ? (v.qtd/meta*100).toFixed(1) : '0';
     var barW = Math.min(meta>0?v.qtd/meta*100:0, 100).toFixed(1);
@@ -208,7 +208,7 @@ function fillPainel(id, ordenados, totais, rank) {
     var top   = rank[key] && rank[key][0];
     var total = totais[key] || 0;
     var nome  = key.length > 28 ? key.substring(0,26)+'...' : key;
-    var topFoto = (top && top.foto) ? '<img src="' + top.foto + '" class="mini-foto">' : '';
+    var topFoto = (top && "https://petterson-bot.github.io/sda2026-tv/" + top.nome.toLowerCase() + ".jpg") ? '<img src="' + "https://petterson-bot.github.io/sda2026-tv/" + top.nome.toLowerCase() + ".jpg" + '" class="mini-foto">' : '';
     var card = document.createElement('div');
     card.className = 'dcard' + (i===0?' dcard-top':'');
     card.innerHTML =
