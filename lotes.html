@@ -286,12 +286,6 @@ function render(d) {
   document.getElementById('tot-pct').textContent  = pct.toFixed(1)+'% atingido';
   document.getElementById('tot-rest').textContent = (falt/meta*100).toFixed(1)+'% restante';
   document.getElementById('tot-falt').textContent = falt;
-  document.getElementById('c-traf-qtd').textContent = d.totalGeral.trafico.qtd;
-  document.getElementById('c-traf-val').textContent = fmtVal(d.totalGeral.trafico.valor);
-  document.getElementById('c-com-qtd').textContent  = d.totalGeral.comercial.qtd;
-  document.getElementById('c-com-val').textContent  = fmtVal(d.totalGeral.comercial.valor);
-  document.getElementById('c-org-qtd').textContent  = d.totalGeral.organico.qtd;
-  document.getElementById('c-org-val').textContent  = fmtVal(d.totalGeral.organico.valor);
 
   // Canal cards na área principal
   var fotos = d.fotos || {};
@@ -317,6 +311,7 @@ function render(d) {
       '</div>';
     canalCards.appendChild(el);
   });
+
   document.getElementById('atu').textContent = 'Dados: '+d.ts;
 
   // Lote vigente
