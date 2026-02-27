@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Lotes SDA 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--g:#4caf03;--g2:#3a8a02;--g3:#2d6e02;--b:#000;--c:#0f0f0f;--c2:#141414;--br:#fff;--ci:#777;--la:#ff4444;--az:#2196f3;--am:#ff9800;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{width:100%;min-height:100vh;background:var(--b);color:var(--br);font-family:"Barlow Condensed",sans-serif;overflow-x:hidden;}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(76,175,3,.06),transparent 60%);pointer-events:none;z-index:0;}
+
+/* ── HEADER ── */
+.header{
+  position:sticky;top:0;z-index:100;
+  background:linear-gradient(180deg,#000,#0a0a0a);
+  border-bottom:2px solid var(--g);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;
+}
+.logo{font-family:"Bebas Neue",sans-serif;font-size:32px;letter-spacing:3px;line-height:1;}
+.logo span{color:var(--g);}
+.header-right{text-align:right;}
+.rel{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:3px;color:var(--g);line-height:1;}
+.dat{font-size:9px;font-weight:700;letter-spacing:1px;color:var(--ci);text-transform:uppercase;margin-top:2px;}
+.atu{font-size:8px;color:#333;margin-top:1px;}
+
+/* ── BODY ── */
+.page{position:relative;z-index:1;padding:12px;display:flex;flex-direction:column;gap:12px;}
+
+/* ── TOTAL BOX ── */
+.total-box{background:rgba(76,175,3,.07);border:1px solid rgba(76,175,3,.25);border-radius:12px;padding:12px 16px;}
+.total-tit{font-size:9px;font-weight:700;letter-spacing:3px;color:var(--g);text-transform:uppercase;text-align:center;margin-bottom:6px;}
+.total-row{display:flex;justify-content:space-between;align-items:baseline;}
+.mnum{font-family:"Bebas Neue",sans-serif;font-size:48px;line-height:1;color:var(--br);}
+.mde{font-family:"Bebas Neue",sans-serif;font-size:18px;color:var(--ci);}
+.bbg{background:#1a1a1a;border-radius:50px;height:7px;overflow:hidden;margin:6px 0;}
+.bbf{height:7px;border-radius:50px;background:linear-gradient(90deg,var(--g2),var(--g));transition:width 1s;}
+.pct-row{display:flex;justify-content:space-between;font-size:10px;font-weight:700;}
+.mok{color:var(--g);}.mfalta{color:var(--la);}
+
+/* ── FALTAM ── */
+.fbox{background:rgba(255,68,68,.06);border:1px solid rgba(255,68,68,.2);border-radius:10px;padding:10px;text-align:center;}
+.fnum{font-family:"Bebas Neue",sans-serif;font-size:40px;line-height:1;color:var(--la);}
+.ftxt{font-size:9px;font-weight:700;letter-spacing:2px;color:rgba(255,68,68,.55);text-transform:uppercase;}
+
+/* ── PANEL TITLE ── */
+.panel-tit{font-family:"Bebas Neue",sans-serif;font-size:11px;letter-spacing:4px;color:var(--g);text-transform:uppercase;display:flex;align-items:center;gap:6px;padding-bottom:8px;border-bottom:2px solid var(--g);margin-bottom:10px;}
+.dot{display:inline-block;width:6px;height:6px;background:var(--g);border-radius:50%;animation:pulse 1.5s infinite;flex-shrink:0;}
+
+/* ── LOTE VIGENTE ── */
+.lv-card{background:linear-gradient(135deg,rgba(76,175,3,.12),rgba(76,175,3,.04));border:1px solid rgba(76,175,3,.4);border-radius:14px;padding:14px 16px;}
+.lv-header{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+.lv-badge{background:var(--g);color:#000;font-family:"Bebas Neue",sans-serif;font-size:10px;letter-spacing:2px;padding:2px 8px;border-radius:50px;flex-shrink:0;}
+.lv-nome{font-family:"Bebas Neue",sans-serif;font-size:20px;letter-spacing:2px;color:var(--g);}
+.lv-canais{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.lv-canal{text-align:center;}
+.lv-canal-foto{width:44px;height:44px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 5px;}
+.lv-canal.t .lv-canal-foto{border:2px solid var(--az);box-shadow:0 0 10px rgba(33,150,243,.4);}
+.lv-canal.c .lv-canal-foto{border:2px solid var(--g);box-shadow:0 0 10px rgba(76,175,3,.4);}
+.lv-canal.o .lv-canal-foto{border:2px solid var(--am);box-shadow:0 0 10px rgba(255,152,0,.4);}
+.lv-canal-nome{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.lv-canal.t .lv-canal-nome{color:var(--az);}
+.lv-canal.c .lv-canal-nome{color:var(--g);}
+.lv-canal.o .lv-canal-nome{color:var(--am);}
+.lv-canal-qtd{font-family:"Bebas Neue",sans-serif;font-size:36px;line-height:1;color:var(--br);}
+.lv-canal-val{font-size:9px;color:var(--ci);}
+.lv-total-row{display:flex;justify-content:flex-end;align-items:baseline;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(76,175,3,.2);}
+.lv-total-label{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--ci);text-transform:uppercase;}
+.lv-total-qtd{font-family:"Bebas Neue",sans-serif;font-size:32px;color:var(--g);line-height:1;}
+.lv-total-val{font-size:11px;color:var(--ci);}
+
+/* ── LOTE CARD (lista) ── */
+.lote-card{background:var(--c2);border:1px solid #1e1e1e;border-radius:10px;padding:10px 12px;}
+.lote-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.lote-card-nome{font-family:"Bebas Neue",sans-serif;font-size:16px;letter-spacing:1px;color:var(--br);}
+.lote-card-total{font-family:"Bebas Neue",sans-serif;font-size:26px;color:var(--g);line-height:1;}
+.lote-card-val{font-size:9px;color:var(--ci);text-align:right;}
+.lote-canais-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
+.lote-canal-item{display:flex;align-items:center;gap:5px;}
+.lote-canal-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.lc-t .lote-canal-dot{background:var(--az);}
+.lc-c .lote-canal-dot{background:var(--g);}
+.lc-o .lote-canal-dot{background:var(--am);}
+.lote-canal-info{}
+.lote-canal-nome{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;line-height:1;}
+.lc-t .lote-canal-nome{color:var(--az);}
+.lc-c .lote-canal-nome{color:var(--g);}
+.lc-o .lote-canal-nome{color:var(--am);}
+.lote-canal-qtd{font-family:"Bebas Neue",sans-serif;font-size:20px;color:var(--br);line-height:1;}
+.lote-canal-val{font-size:8px;color:var(--ci);}
+
+/* ── POR CANAL ── */
+.canal-card{border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;}
+.canal-card.trafico {background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.3);border-left:3px solid var(--az);}
+.canal-card.comercial{background:rgba(76,175,3,.08);border:1px solid rgba(76,175,3,.3);border-left:3px solid var(--g);}
+.canal-card.organico {background:rgba(255,152,0,.08);border:1px solid rgba(255,152,0,.3);border-left:3px solid var(--am);}
+.canal-foto{width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+.canal-card.trafico  .canal-foto{border:2px solid var(--az);box-shadow:0 0 8px rgba(33,150,243,.4);}
+.canal-card.comercial .canal-foto{border:2px solid var(--g);box-shadow:0 0 8px rgba(76,175,3,.4);}
+.canal-card.organico  .canal-foto{border:2px solid var(--am);box-shadow:0 0 8px rgba(255,152,0,.4);}
+.canal-info{flex:1;}
+.canal-nome{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:2px;}
+.canal-card.trafico  .canal-nome{color:var(--az);}
+.canal-card.comercial .canal-nome{color:var(--g);}
+.canal-card.organico  .canal-nome{color:var(--am);}
+.canal-qtd{font-family:"Bebas Neue",sans-serif;font-size:36px;line-height:1;color:var(--br);}
+.canal-val{font-size:10px;color:var(--ci);}
+
+/* ── LOADING ── */
+.loading{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:200;}
+.loading-logo{font-family:"Bebas Neue",sans-serif;font-size:80px;color:var(--g);animation:pulse 1s infinite;}
+.loading-txt{font-size:13px;letter-spacing:4px;color:var(--ci);text-transform:uppercase;margin-top:12px;}
+
+/* ── TICKER ── */
+.tk{background:var(--g);padding:6px 0;overflow:hidden;position:sticky;bottom:0;z-index:100;}
+.tkc{font-family:"Bebas Neue",sans-serif;font-size:13px;letter-spacing:2px;color:#000;white-space:nowrap;animation:tk 40s linear infinite;display:inline-block;}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes tk{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+</style>
+</head>
+<body>
+
+<div class="loading" id="loading">
+  <div class="loading-logo">SDA</div>
+  <div class="loading-txt">Carregando...</div>
+</div>
+
+<div id="app" style="display:none">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">SD<span>A</span></div>
+    <div class="header-right">
+      <div class="rel" id="rel">--:--:--</div>
+      <div class="dat" id="dat">—</div>
+      <div class="atu" id="atu">—</div>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- TOTAL GERAL -->
+    <div class="total-box">
+      <div class="total-tit">Total Geral · Meta <span id="tot-meta">1271</span></div>
+      <div class="total-row">
+        <div class="mnum" id="tot-qtd">—</div>
+        <div class="mde">/ <span id="tot-meta2">1271</span></div>
+      </div>
+      <div class="bbg"><div class="bbf" id="tot-bar" style="width:0%"></div></div>
+      <div class="pct-row">
+        <span class="mok" id="tot-pct">—</span>
+        <span class="mfalta" id="tot-rest">—</span>
+      </div>
+    </div>
+
+    <!-- FALTAM -->
+    <div class="fbox">
+      <div class="fnum" id="tot-falt">—</div>
+      <div class="ftxt">ingressos restantes</div>
+    </div>
+
+    <!-- LOTE VIGENTE -->
+    <div>
+      <div class="panel-tit"><span class="dot"></span>Lote Vigente</div>
+      <div class="lv-card" id="lv-card">
+        <div style="color:var(--ci);font-size:14px;text-align:center;">Carregando...</div>
+      </div>
+    </div>
+
+    <!-- TODOS OS LOTES -->
+    <div>
+      <div class="panel-tit"><span class="dot"></span>Todos os Lotes</div>
+      <div id="lotes-lista" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+
+    <!-- POR CANAL -->
+    <div>
+      <div class="panel-tit"><span class="dot"></span>Por Canal</div>
+      <div id="canal-cards" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+
+  </div>
+
+  <!-- TICKER -->
+  <div class="tk"><div class="tkc" id="tkc">—</div></div>
+
+</div>
+
+<script>
+var JSON_URL = 'https://petterson-bot.github.io/sda2026-tv/dados-lotes.json';
+var META = 1271;
+
+function fmtVal(v) {
+  if (!v) return 'R$ 0';
+  if (v >= 1000000) return 'R$ '+(v/1000000).toFixed(1)+'M';
+  if (v >= 1000)    return 'R$ '+(v/1000).toFixed(1)+'k';
+  return 'R$ '+v.toFixed(0);
+}
+
+function fotoTag(src, nome, cls) {
+  if (src) return '<img src="'+src+'" class="'+cls+'" onerror="this.style.display=\'none\'">';
+  return '<div class="'+cls+'" style="background:#222;display:flex;align-items:center;justify-content:center;font-family:\'Bebas Neue\',sans-serif;font-size:18px;">'+nome[0]+'</div>';
+}
+
+function render(d) {
+  var lotes = d.lotes || [];
+  var fotos = d.fotos || {};
+  var vigente = lotes[0] || null;
+  var tg = d.totalGeral || {};
+
+  // Totais
+  var tot  = tg.qtd || 0;
+  var pct  = META > 0 ? (tot/META*100) : 0;
+  var falt = Math.max(META - tot, 0);
+  document.getElementById('tot-qtd').textContent  = tot;
+  document.getElementById('tot-meta').textContent = META;
+  document.getElementById('tot-meta2').textContent= META;
+  document.getElementById('tot-bar').style.width  = Math.min(pct,100).toFixed(1)+'%';
+  document.getElementById('tot-pct').textContent  = pct.toFixed(1)+'% atingido';
+  document.getElementById('tot-rest').textContent = (falt/META*100).toFixed(1)+'% restante';
+  document.getElementById('tot-falt').textContent = falt;
+  document.getElementById('atu').textContent      = 'Dados: '+d.ts;
+
+  // Lote vigente
+  if (vigente) {
+    document.getElementById('lv-card').innerHTML =
+      '<div class="lv-header">'+
+        '<div class="lv-badge">● VIGENTE</div>'+
+        '<div class="lv-nome">'+vigente.nome+'</div>'+
+      '</div>'+
+      '<div class="lv-canais">'+
+        '<div class="lv-canal t">'+fotoTag(fotos.trafico,'T','lv-canal-foto')+'<div class="lv-canal-nome">Tráfego</div><div class="lv-canal-qtd">'+vigente.trafico.qtd+'</div><div class="lv-canal-val">'+fmtVal(vigente.trafico.valor)+'</div></div>'+
+        '<div class="lv-canal c">'+fotoTag(fotos.comercial,'C','lv-canal-foto')+'<div class="lv-canal-nome">Comercial</div><div class="lv-canal-qtd">'+vigente.comercial.qtd+'</div><div class="lv-canal-val">'+fmtVal(vigente.comercial.valor)+'</div></div>'+
+        '<div class="lv-canal o">'+fotoTag(fotos.organico,'O','lv-canal-foto')+'<div class="lv-canal-nome">Orgânico</div><div class="lv-canal-qtd">'+vigente.organico.qtd+'</div><div class="lv-canal-val">'+fmtVal(vigente.organico.valor)+'</div></div>'+
+      '</div>'+
+      '<div class="lv-total-row">'+
+        '<div class="lv-total-label">Total</div>'+
+        '<div class="lv-total-qtd">'+vigente.totalQtd+'</div>'+
+        '<div class="lv-total-val">'+fmtVal(vigente.totalValor)+'</div>'+
+      '</div>';
+  }
+
+  // Todos os lotes
+  var lista = document.getElementById('lotes-lista');
+  lista.innerHTML = '';
+  lotes.slice(1).forEach(function(L) {
+    var el = document.createElement('div');
+    el.className = 'lote-card';
+    el.innerHTML =
+      '<div class="lote-card-header">'+
+        '<div class="lote-card-nome">'+L.nome+'</div>'+
+        '<div><div class="lote-card-total">'+L.totalQtd+'</div><div class="lote-card-val">'+fmtVal(L.totalValor)+'</div></div>'+
+      '</div>'+
+      '<div class="lote-canais-grid">'+
+        '<div class="lote-canal-item lc-t"><div class="lote-canal-dot"></div><div class="lote-canal-info"><div class="lote-canal-nome">Tráfego</div><div class="lote-canal-qtd">'+L.trafico.qtd+'</div><div class="lote-canal-val">'+fmtVal(L.trafico.valor)+'</div></div></div>'+
+        '<div class="lote-canal-item lc-c"><div class="lote-canal-dot"></div><div class="lote-canal-info"><div class="lote-canal-nome">Comercial</div><div class="lote-canal-qtd">'+L.comercial.qtd+'</div><div class="lote-canal-val">'+fmtVal(L.comercial.valor)+'</div></div></div>'+
+        '<div class="lote-canal-item lc-o"><div class="lote-canal-dot"></div><div class="lote-canal-info"><div class="lote-canal-nome">Orgânico</div><div class="lote-canal-qtd">'+L.organico.qtd+'</div><div class="lote-canal-val">'+fmtVal(L.organico.valor)+'</div></div></div>'+
+      '</div>';
+    lista.appendChild(el);
+  });
+
+  // Por canal
+  var canalEl = document.getElementById('canal-cards');
+  canalEl.innerHTML = '';
+  var canais = [
+    { key:'trafico',   cls:'trafico',   nome:'Tráfego',  foto:fotos.trafico   },
+    { key:'comercial', cls:'comercial', nome:'Comercial', foto:fotos.comercial },
+    { key:'organico',  cls:'organico',  nome:'Orgânico',  foto:fotos.organico  }
+  ];
+  canais.forEach(function(cfg) {
+    var dados = tg[cfg.key] || { qtd:0, valor:0 };
+    var el = document.createElement('div');
+    el.className = 'canal-card ' + cfg.cls;
+    el.innerHTML =
+      fotoTag(cfg.foto, cfg.nome, 'canal-foto')+
+      '<div class="canal-info">'+
+        '<div class="canal-nome">'+cfg.nome+'</div>'+
+        '<div class="canal-qtd">'+dados.qtd+'</div>'+
+        '<div class="canal-val">'+fmtVal(dados.valor)+'</div>'+
+      '</div>';
+    canalEl.appendChild(el);
+  });
+
+  // Ticker
+  var tk = ['TOTAL: '+tot+' ingressos'];
+  lotes.forEach(function(L){ tk.push(L.nome+': '+L.totalQtd); });
+  tk.push('TRÁFEGO: '+(tg.trafico?tg.trafico.qtd:0));
+  tk.push('COMERCIAL: '+(tg.comercial?tg.comercial.qtd:0));
+  tk.push('ORGÂNICO: '+(tg.organico?tg.organico.qtd:0));
+  document.getElementById('tkc').textContent = tk.join('     ·     ');
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('app').style.display     = 'block';
+}
+
+function buscar() {
+  fetch(JSON_URL+'?t='+Date.now())
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(function(d){ render(d); })
+    .catch(function(e){ document.getElementById('atu').textContent = 'Erro: '+e.message; });
+}
+
+function tick() {
+  var a = new Date();
+  var h = ('0'+a.getHours()).slice(-2), m = ('0'+a.getMinutes()).slice(-2), s = ('0'+a.getSeconds()).slice(-2);
+  document.getElementById('rel').textContent = h+':'+m+':'+s;
+  var ds=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  var ms=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  document.getElementById('dat').textContent = ds[a.getDay()]+', '+a.getDate()+' '+ms[a.getMonth()]+' '+a.getFullYear();
+}
+
+buscar(); tick();
+setInterval(tick, 1000);
+setInterval(buscar, 60000);
+</script>
+</body>
+</html>
