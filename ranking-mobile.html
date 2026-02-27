@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Ranking SDA 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--g:#4caf03;--g2:#3a8a02;--g3:#2d6e02;--b:#000;--c:#0f0f0f;--c2:#141414;--br:#fff;--ci:#777;--la:#ff4444;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{width:100%;min-height:100vh;background:var(--b);color:var(--br);font-family:"Barlow Condensed",sans-serif;overflow-x:hidden;}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(76,175,3,.06),transparent 60%);pointer-events:none;z-index:0;}
+
+/* ── HEADER ── */
+.header{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,#000,#0a0a0a);border-bottom:2px solid var(--g);display:flex;align-items:center;justify-content:space-between;padding:12px 16px;}
+.logo{font-family:"Bebas Neue",sans-serif;font-size:32px;letter-spacing:3px;line-height:1;}
+.logo span{color:var(--g);}
+.logo-sub{font-size:8px;font-weight:700;letter-spacing:4px;color:var(--g);text-transform:uppercase;}
+.header-right{text-align:right;}
+.rel{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:3px;color:var(--g);line-height:1;}
+.dat{font-size:9px;font-weight:700;letter-spacing:1px;color:var(--ci);text-transform:uppercase;margin-top:2px;}
+.atu{font-size:8px;color:#333;margin-top:1px;}
+
+/* ── PAGE ── */
+.page{position:relative;z-index:1;padding:12px;display:flex;flex-direction:column;gap:12px;}
+
+/* ── PANEL TITLE ── */
+.panel-tit{font-family:"Bebas Neue",sans-serif;font-size:11px;letter-spacing:4px;color:var(--g);text-transform:uppercase;display:flex;align-items:center;gap:6px;padding-bottom:8px;border-bottom:2px solid var(--g);margin-bottom:10px;}
+.dot{display:inline-block;width:6px;height:6px;background:var(--g);border-radius:50%;animation:pulse 1.5s infinite;flex-shrink:0;}
+
+/* ── META BOX ── */
+.mbox{width:100%;background:rgba(76,175,3,.07);border:1px solid rgba(76,175,3,.25);border-radius:12px;padding:12px 16px;}
+.mtit{font-size:9px;font-weight:700;letter-spacing:3px;color:var(--g);text-transform:uppercase;margin-bottom:6px;text-align:center;}
+.mgrande{display:flex;align-items:flex-end;justify-content:center;gap:5px;margin-bottom:5px;}
+.mnum{font-family:"Bebas Neue",sans-serif;font-size:52px;line-height:1;color:var(--br);}
+.mde{font-family:"Bebas Neue",sans-serif;font-size:20px;color:var(--ci);padding-bottom:3px;}
+.bbg{background:#1a1a1a;border-radius:50px;height:7px;overflow:hidden;margin-bottom:5px;}
+.bbf{height:7px;border-radius:50px;background:linear-gradient(90deg,var(--g2),var(--g));transition:width 1s;}
+.minfo{display:flex;justify-content:space-between;font-size:10px;font-weight:700;}
+.mok{color:var(--g);}.mfalta{color:var(--la);}
+
+/* ── FALTAM ── */
+.fbox{background:rgba(255,68,68,.06);border:1px solid rgba(255,68,68,.2);border-radius:10px;padding:10px;text-align:center;}
+.fnum{font-family:"Bebas Neue",sans-serif;font-size:42px;line-height:1;color:var(--la);}
+.ftxt{font-size:9px;font-weight:700;letter-spacing:2px;color:rgba(255,68,68,.55);text-transform:uppercase;}
+
+/* ── VALOR VENDEDORES ── */
+.vbox{background:rgba(255,255,255,.04);border:1px solid #2a2a2a;border-radius:10px;padding:10px;text-align:center;}
+.vtit{font-size:9px;font-weight:700;letter-spacing:2px;color:#555;text-transform:uppercase;margin-bottom:3px;}
+.vnum{font-family:"Bebas Neue",sans-serif;font-size:30px;color:#888;line-height:1;}
+
+/* ── LOTE VIGENTE ── */
+.lv-card{background:linear-gradient(135deg,rgba(76,175,3,.12),rgba(76,175,3,.04));border:1px solid rgba(76,175,3,.4);border-radius:14px;padding:14px;}
+.lv-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.lv-badge{background:var(--g);color:#000;font-family:"Bebas Neue",sans-serif;font-size:10px;letter-spacing:2px;padding:2px 8px;border-radius:50px;flex-shrink:0;}
+.lv-nome{font-family:"Bebas Neue",sans-serif;font-size:18px;letter-spacing:2px;color:var(--g);}
+
+/* Cards do lote vigente */
+.lote-cards{display:flex;flex-direction:column;gap:8px;}
+.lcard{display:flex;align-items:center;gap:10px;}
+.lcard-pos{font-family:"Bebas Neue",sans-serif;font-size:44px;line-height:1;color:var(--g);min-width:52px;text-align:right;text-shadow:0 0 20px rgba(76,175,3,.4);}
+.lcard:nth-child(2) .lcard-pos{color:rgba(76,175,3,.75);font-size:36px;}
+.lcard:nth-child(3) .lcard-pos{color:rgba(76,175,3,.55);font-size:30px;}
+.lcard-inner{flex:1;border-radius:40px;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;}
+.lcard:nth-child(1) .lcard-inner{background:linear-gradient(90deg,var(--g),#6ed604);box-shadow:0 4px 20px rgba(76,175,3,.3);}
+.lcard:nth-child(2) .lcard-inner{background:linear-gradient(90deg,var(--g2),var(--g));box-shadow:0 2px 12px rgba(76,175,3,.2);}
+.lcard:nth-child(3) .lcard-inner{background:linear-gradient(90deg,var(--g3),var(--g2));}
+.lcard-inner::before{content:"";position:absolute;top:0;left:0;right:0;height:50%;background:rgba(255,255,255,.07);border-radius:inherit;}
+.lcard-foto{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,0,0,.3);z-index:1;flex-shrink:0;}
+.lcard-foto-ph{width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-family:"Bebas Neue",sans-serif;font-size:20px;color:#000;z-index:1;flex-shrink:0;}
+.lcard-nome{font-family:"Bebas Neue",sans-serif;font-size:26px;letter-spacing:2px;color:#000;line-height:1;z-index:1;}
+.lcard:nth-child(1) .lcard-nome{font-size:30px;}
+.lcard-ord{font-family:"Bebas Neue",sans-serif;font-size:18px;color:rgba(0,0,0,.4);z-index:1;}
+
+/* ── SEMANA / GERAL ── */
+.vcard{display:flex;align-items:center;gap:10px;background:var(--c2);border:1px solid #1e1e1e;border-radius:9px;padding:10px 12px;}
+.vcard-1{border-color:rgba(76,175,3,.5);background:rgba(76,175,3,.07);}
+.vcard-pos{font-family:"Bebas Neue",sans-serif;font-size:26px;color:rgba(76,175,3,.5);min-width:22px;text-align:center;line-height:1;}
+.vcard-1 .vcard-pos{color:var(--g);}
+.foto{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--g);flex-shrink:0;}
+.foto-ph{width:42px;height:42px;border-radius:50%;background:var(--g2);display:flex;align-items:center;justify-content:center;font-family:"Bebas Neue",sans-serif;font-size:18px;color:#000;flex-shrink:0;}
+.vcard-info{flex:1;}
+.vcard-nome{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:1px;color:var(--br);line-height:1;}
+.vcard-1 .vcard-nome{color:var(--g);}
+.vcard-num{font-family:"Bebas Neue",sans-serif;font-size:34px;color:var(--g);line-height:1;text-align:right;flex-shrink:0;}
+.vcard-1 .vcard-num{font-size:38px;}
+
+.sem-label{font-size:10px;color:var(--ci);font-weight:600;letter-spacing:1px;margin-bottom:8px;text-align:center;}
+
+/* ── TICKER ── */
+.tk{background:var(--g);padding:6px 0;overflow:hidden;position:sticky;bottom:0;z-index:100;}
+.tkc{font-family:"Bebas Neue",sans-serif;font-size:13px;letter-spacing:2px;color:#000;white-space:nowrap;animation:tk 40s linear infinite;display:inline-block;}
+
+/* ── LOADING ── */
+.loading{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:200;}
+.loading-logo{font-family:"Bebas Neue",sans-serif;font-size:80px;color:var(--g);animation:pulse 1s infinite;}
+.loading-txt{font-size:13px;letter-spacing:4px;color:var(--ci);text-transform:uppercase;margin-top:12px;}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes tk{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+</style>
+</head>
+<body>
+
+<div class="loading" id="loading">
+  <div class="loading-logo">SDA</div>
+  <div class="loading-txt">Carregando...</div>
+</div>
+
+<div id="app" style="display:none">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="logo">SD<span>A</span></div>
+      <div class="logo-sub">Ao Vivo 2026</div>
+    </div>
+    <div class="header-right">
+      <div class="rel" id="rel">--:--:--</div>
+      <div class="dat" id="dat">—</div>
+      <div class="atu" id="atu">—</div>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- META -->
+    <div class="mbox">
+      <div class="mtit">Ranking Comercial · Meta <span id="m-meta">—</span></div>
+      <div class="mgrande">
+        <div class="mnum" id="m-tot">—</div>
+        <div class="mde">/ <span id="m-meta2">—</span></div>
+      </div>
+      <div class="bbg"><div class="bbf" id="m-bar" style="width:0%"></div></div>
+      <div class="minfo"><span class="mok" id="m-pct">—</span><span class="mfalta" id="m-rest">—</span></div>
+    </div>
+
+    <!-- FALTAM -->
+    <div class="fbox">
+      <div class="fnum" id="m-falt">—</div>
+      <div class="ftxt">ingressos restantes</div>
+    </div>
+
+    <!-- VALOR VENDEDORES -->
+    <div class="vbox">
+      <div class="vtit">Valor Total Comercial</div>
+      <div class="vnum" id="m-valor">—</div>
+    </div>
+
+    <!-- LOTE VIGENTE -->
+    <div>
+      <div class="panel-tit"><span class="dot"></span>Lote Vigente</div>
+      <div class="lv-card">
+        <div class="lv-header">
+          <div class="lv-badge">VIGENTE</div>
+          <div class="lv-nome" id="lote-nome">—</div>
+        </div>
+        <div class="lote-cards" id="lote-cards"></div>
+      </div>
+    </div>
+
+    <!-- SEMANA VIGENTE -->
+    <div>
+      <div class="panel-tit"><span class="dot"></span>Semana Vigente</div>
+      <div class="sem-label" id="sem-label">—</div>
+      <div id="sem-rank" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+
+    <!-- RANKING GERAL -->
+    <div>
+      <div class="panel-tit"><span class="dot"></span>Ranking Geral</div>
+      <div id="geral-rank" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+
+  </div>
+
+  <!-- TICKER -->
+  <div class="tk"><div class="tkc" id="tkc">—</div></div>
+
+</div>
+
+<script>
+var JSON_URL = 'https://petterson-bot.github.io/sda2026-tv/dados.json';
+
+function fmtVal(v) {
+  if (!v) return 'R$ 0';
+  if (v >= 1000000) return 'R$ '+(v/1000000).toFixed(1)+'M';
+  if (v >= 1000)    return 'R$ '+(v/1000).toFixed(1)+'k';
+  return 'R$ '+v.toFixed(0);
+}
+
+function fotoEl(foto, nome, cls) {
+  if (foto) return '<img src="'+foto+'" class="'+cls+'" onerror="this.style.display=\'none\'">';
+  return '<div class="'+cls+'-ph">'+nome[0]+'</div>';
+}
+
+function renderVcard(v, i) {
+  var el = document.createElement('div');
+  el.className = 'vcard'+(i===0?' vcard-1':'');
+  el.innerHTML =
+    '<div class="vcard-pos">'+(i+1)+'</div>'+
+    fotoEl(v.foto, v.nome, 'foto')+
+    '<div class="vcard-info"><div class="vcard-nome">'+v.nome+'</div></div>'+
+    '<div class="vcard-num">'+v.qtd+'</div>';
+  return el;
+}
+
+function render(d) {
+  var meta = d.meta, tot = d.totalGeralK;
+  var pct  = meta > 0 ? (tot/meta*100) : 0;
+  var falt = Math.max(meta - tot, 0);
+
+  document.getElementById('m-meta').textContent  = meta;
+  document.getElementById('m-meta2').textContent = meta;
+  document.getElementById('m-tot').textContent   = tot;
+  document.getElementById('m-bar').style.width   = Math.min(pct,100).toFixed(1)+'%';
+  document.getElementById('m-pct').textContent   = pct.toFixed(1)+'% atingido';
+  document.getElementById('m-rest').textContent  = (meta>0?(falt/meta*100).toFixed(1):'100.0')+'% restante';
+  document.getElementById('m-falt').textContent  = falt;
+  document.getElementById('m-valor').textContent = fmtVal(d.totalVendedoresValor || 0);
+  document.getElementById('atu').textContent     = 'Dados: '+d.ts;
+
+  // Lote vigente
+  document.getElementById('lote-nome').textContent = d.loteVigente.nome || '—';
+  var loteEl = document.getElementById('lote-cards');
+  loteEl.innerHTML = '';
+  d.loteVigente.rank.forEach(function(v, i) {
+    var el = document.createElement('div');
+    el.className = 'lcard';
+    el.innerHTML =
+      '<div class="lcard-pos">'+v.qtd+'</div>'+
+      '<div class="lcard-inner">'+
+        fotoEl(v.foto, v.nome, 'lcard-foto')+
+        '<div class="lcard-nome">'+v.nome+'</div>'+
+        '<div class="lcard-ord">'+(i+1)+'°</div>'+
+      '</div>';
+    loteEl.appendChild(el);
+  });
+
+  // Semana vigente
+  document.getElementById('sem-label').textContent = d.semVigente.semana;
+  var semEl = document.getElementById('sem-rank');
+  semEl.innerHTML = '';
+  d.semVigente.rank.forEach(function(v,i){ semEl.appendChild(renderVcard(v,i)); });
+
+  // Ranking geral
+  var geralEl = document.getElementById('geral-rank');
+  geralEl.innerHTML = '';
+  d.rankGeral.forEach(function(v,i){ geralEl.appendChild(renderVcard(v,i)); });
+
+  // Ticker
+  var tk = ['META: '+tot+' / '+meta+'  ·  '+pct.toFixed(1)+'% atingido  ·  FALTAM '+falt+' ingressos'];
+  d.rankGeral.forEach(function(v){ tk.push(v.nome.toUpperCase()+': '+v.qtd+' ingressos'); });
+  document.getElementById('tkc').textContent = tk.join('     ·     ');
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('app').style.display     = 'block';
+}
+
+function buscar() {
+  fetch(JSON_URL+'?t='+Date.now())
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(function(d){ render(d); })
+    .catch(function(e){ document.getElementById('atu').textContent = 'Erro: '+e.message; });
+}
+
+function tick() {
+  var a = new Date();
+  var h = ('0'+a.getHours()).slice(-2), m = ('0'+a.getMinutes()).slice(-2), s = ('0'+a.getSeconds()).slice(-2);
+  document.getElementById('rel').textContent = h+':'+m+':'+s;
+  var ds=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  var ms=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  document.getElementById('dat').textContent = ds[a.getDay()]+', '+a.getDate()+' '+ms[a.getMonth()]+' '+a.getFullYear();
+}
+
+buscar(); tick();
+setInterval(tick, 1000);
+setInterval(buscar, 60000);
+</script>
+</body>
+</html>
