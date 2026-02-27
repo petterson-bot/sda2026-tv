@@ -172,7 +172,7 @@ function render(d) {
   document.getElementById('m-pct').textContent   = pct.toFixed(1)+'% atingido';
   document.getElementById('m-rest').textContent  = (meta>0?(falt/meta*100).toFixed(1):'100.0')+'% restante';
   document.getElementById('m-falt').textContent  = falt;
-  document.getElementById('m-valor').textContent = fmtVal(d.totalGeralValor || 0);
+  document.getElementById('m-valor').textContent = fmtVal(d.totalVendedoresValor || 0);
   document.getElementById('atu').textContent     = 'Dados: '+d.ts;
   document.getElementById('sem-label').textContent = d.semVigente.semana;
   var semEl = document.getElementById('sem-rank');
