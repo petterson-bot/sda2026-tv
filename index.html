@@ -10,30 +10,8 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{width:100%;height:100%;background:var(--b);color:var(--br);font-family:"Barlow Condensed",sans-serif;overflow:hidden;}
 body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 55% 70% at 8% 50%,rgba(76,175,3,.07),transparent 65%),radial-gradient(ellipse 50% 60% at 92% 50%,rgba(76,175,3,.04),transparent 65%);pointer-events:none;z-index:0;}
-
-/*
-  GRID PRINCIPAL:
-  [ ESQ ] [ MAIN (topo=lote, baixo=semana+geral) ]
-  [       TICKER                                  ]
-*/
-.page{
-  position:relative;z-index:1;
-  display:grid;
-  grid-template-columns: clamp(230px,20vw,340px) 1fr;
-  grid-template-rows: 1fr 40px;
-  width:100vw;height:100vh;
-}
-
-/* ── LATERAL ESQUERDA ── */
-.esq{
-  grid-column:1;grid-row:1;
-  background:linear-gradient(170deg,#0c0c0c,#000);
-  border-right:2px solid var(--g);
-  display:flex;flex-direction:column;align-items:center;
-  padding:clamp(12px,2vh,24px) clamp(10px,1.2vw,20px);
-  gap:clamp(6px,1vh,12px);
-  position:relative;overflow:hidden;
-}
+.page{position:relative;z-index:1;display:grid;grid-template-columns:clamp(230px,20vw,340px) 1fr;grid-template-rows:1fr 40px;width:100vw;height:100vh;}
+.esq{grid-column:1;grid-row:1;background:linear-gradient(170deg,#0c0c0c,#000);border-right:2px solid var(--g);display:flex;flex-direction:column;align-items:center;padding:clamp(12px,2vh,24px) clamp(10px,1.2vw,20px);gap:clamp(6px,1vh,12px);position:relative;overflow:hidden;}
 .esq::before{content:"";position:absolute;top:-60px;left:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(76,175,3,.12),transparent 70%);pointer-events:none;}
 .logo{font-family:"Bebas Neue",sans-serif;font-size:clamp(44px,5.5vw,80px);line-height:1;letter-spacing:4px;color:var(--br);text-align:center;}
 .logo span{color:var(--g);}
@@ -53,27 +31,15 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .fbox{width:100%;background:rgba(255,68,68,.06);border:1px solid rgba(255,68,68,.2);border-radius:10px;padding:clamp(5px,0.7vh,9px);text-align:center;}
 .fnum{font-family:"Bebas Neue",sans-serif;font-size:clamp(26px,3.5vw,46px);line-height:1;color:var(--la);}
 .ftxt{font-size:clamp(7px,0.65vw,9px);font-weight:700;letter-spacing:2px;color:rgba(255,68,68,.55);text-transform:uppercase;}
+.vbox{width:100%;background:rgba(255,255,255,.04);border:1px solid #2a2a2a;border-radius:10px;padding:clamp(5px,0.7vh,9px);text-align:center;}
+.vtit{font-size:clamp(7px,0.65vw,9px);font-weight:700;letter-spacing:2px;color:#555;text-transform:uppercase;margin-bottom:3px;}
+.vnum{font-family:"Bebas Neue",sans-serif;font-size:clamp(22px,2.5vw,36px);color:#888;line-height:1;}
 .rod{margin-top:auto;text-align:center;padding-top:4px;}
 .rel{font-family:"Bebas Neue",sans-serif;font-size:clamp(24px,3vw,38px);letter-spacing:4px;color:var(--g);line-height:1;}
 .dat{font-size:clamp(7px,0.65vw,9px);font-weight:600;letter-spacing:2px;color:var(--ci);text-transform:uppercase;margin-top:2px;}
 .atu{font-size:clamp(6px,0.6vw,8px);color:#333;margin-top:2px;}
-
-/* ── ÁREA PRINCIPAL (direita) ── */
-.main{
-  grid-column:2;grid-row:1;
-  display:grid;
-  grid-template-rows: 1fr 1fr;
-  overflow:hidden;
-}
-
-/* TOPO: LOTE VIGENTE */
-.lote-area{
-  border-bottom:2px solid var(--g);
-  display:flex;flex-direction:column;
-  padding:clamp(10px,1.8vh,22px) clamp(16px,2vw,36px);
-  gap:clamp(6px,1vh,12px);
-  overflow:hidden;
-}
+.main{grid-column:2;grid-row:1;display:grid;grid-template-rows:1fr 1fr;overflow:hidden;}
+.lote-area{border-bottom:2px solid var(--g);display:flex;flex-direction:column;padding:clamp(10px,1.8vh,22px) clamp(16px,2vw,36px);gap:clamp(6px,1vh,12px);overflow:hidden;}
 .panel-tit{font-family:"Bebas Neue",sans-serif;font-size:clamp(10px,1vw,14px);letter-spacing:4px;color:var(--g);text-transform:uppercase;display:flex;align-items:center;gap:6px;padding-bottom:6px;border-bottom:2px solid var(--g);}
 .dot{display:inline-block;width:7px;height:7px;background:var(--g);border-radius:50%;animation:pulse 1.5s infinite;flex-shrink:0;}
 .lote-nome{font-size:clamp(9px,0.8vw,12px);font-weight:700;color:var(--ci);letter-spacing:2px;text-transform:uppercase;text-align:center;}
@@ -93,23 +59,9 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .lcard-nome{font-family:"Bebas Neue",sans-serif;font-size:clamp(22px,3.5vw,56px);letter-spacing:3px;color:#000;line-height:1;z-index:1;}
 .lcard:nth-child(1) .lcard-nome{font-size:clamp(28px,4.2vw,64px);}
 .lcard-ord{font-family:"Bebas Neue",sans-serif;font-size:clamp(16px,2vw,32px);color:rgba(0,0,0,.4);z-index:1;}
-
-/* BAIXO: SEMANA + RANKING GERAL lado a lado */
-.baixo-area{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-}
-.semana-area{
-  border-right:2px solid var(--g);
-  padding:clamp(10px,1.6vh,20px) clamp(14px,1.8vw,30px);
-  display:flex;flex-direction:column;gap:clamp(6px,0.9vh,10px);
-  overflow:hidden;
-}
-.geral-area{
-  padding:clamp(10px,1.6vh,20px) clamp(14px,1.8vw,30px);
-  display:flex;flex-direction:column;gap:clamp(6px,0.9vh,10px);
-  overflow:hidden;
-}
+.baixo-area{display:grid;grid-template-columns:1fr 1fr;}
+.semana-area{border-right:2px solid var(--g);padding:clamp(10px,1.6vh,20px) clamp(14px,1.8vw,30px);display:flex;flex-direction:column;gap:clamp(6px,0.9vh,10px);overflow:hidden;}
+.geral-area{padding:clamp(10px,1.6vh,20px) clamp(14px,1.8vw,30px);display:flex;flex-direction:column;gap:clamp(6px,0.9vh,10px);overflow:hidden;}
 .sem-label{font-size:clamp(8px,0.7vw,10px);color:var(--ci);font-weight:600;letter-spacing:1px;margin-bottom:4px;text-align:center;}
 .rank-list{display:flex;flex-direction:column;gap:clamp(5px,0.8vh,10px);flex:1;}
 .vcard{display:flex;align-items:center;gap:clamp(6px,0.7vw,10px);background:var(--c2);border:1px solid #1e1e1e;border-radius:9px;padding:clamp(5px,0.8vh,10px) clamp(7px,0.8vw,13px);}
@@ -123,31 +75,22 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .vcard-1 .vcard-nome{color:var(--g);}
 .vcard-num{font-family:"Bebas Neue",sans-serif;font-size:clamp(24px,3.2vw,46px);color:var(--g);line-height:1;text-align:right;flex-shrink:0;}
 .vcard-1 .vcard-num{font-size:clamp(28px,3.8vw,54px);}
-
-/* TICKER */
 .tk{grid-column:1/-1;grid-row:2;background:var(--g);display:flex;align-items:center;overflow:hidden;z-index:10;}
 .tkl{background:#000;color:var(--g);font-family:"Bebas Neue",sans-serif;font-size:clamp(11px,1vw,16px);letter-spacing:3px;padding:0 14px;height:100%;display:flex;align-items:center;white-space:nowrap;flex-shrink:0;}
 .tkc{font-family:"Bebas Neue",sans-serif;font-size:clamp(11px,1vw,16px);letter-spacing:2px;color:#000;white-space:nowrap;animation:tk 40s linear infinite;padding-left:40px;}
-
 .loading{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;}
 .loading-logo{font-family:"Bebas Neue",sans-serif;font-size:clamp(60px,10vw,120px);color:var(--g);animation:pulse 1s infinite;}
 .loading-txt{font-size:clamp(12px,1.2vw,16px);letter-spacing:4px;color:var(--ci);text-transform:uppercase;margin-top:12px;}
-
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 @keyframes tk{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
-@keyframes si{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
 </style>
 </head>
 <body>
-
 <div class="loading" id="loading">
   <div class="loading-logo">SDA</div>
   <div class="loading-txt">Carregando dados...</div>
 </div>
-
 <div class="page" id="page" style="display:none">
-
-  <!-- LATERAL ESQUERDA -->
   <div class="esq">
     <div class="logo">SD<span>A</span></div>
     <div class="logo-sub">Ao Vivo 2026</div>
@@ -166,52 +109,48 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
       <div class="fnum" id="m-falt">—</div>
       <div class="ftxt">ingressos restantes</div>
     </div>
+    <div class="vbox">
+      <div class="vtit">Valor Total</div>
+      <div class="vnum" id="m-valor">—</div>
+    </div>
     <div class="rod">
       <div class="rel" id="rel">--:--:--</div>
       <div class="dat" id="dat">—</div>
       <div class="atu" id="atu">—</div>
     </div>
   </div>
-
-  <!-- ÁREA PRINCIPAL -->
   <div class="main">
-
-    <!-- TOPO: LOTE VIGENTE -->
     <div class="lote-area">
       <div class="panel-tit"><span class="dot"></span>Lote Vigente</div>
       <div class="lote-nome" id="lote-nome">—</div>
       <div class="lote-cards" id="lote-cards"></div>
     </div>
-
-    <!-- BAIXO: SEMANA + RANKING GERAL -->
     <div class="baixo-area">
-
       <div class="semana-area">
         <div class="panel-tit"><span class="dot"></span>Semana Vigente</div>
         <div class="sem-label" id="sem-label">—</div>
         <div class="rank-list" id="sem-rank"></div>
       </div>
-
       <div class="geral-area">
         <div class="panel-tit"><span class="dot"></span>Ranking Geral</div>
         <div class="rank-list" id="geral-rank"></div>
       </div>
-
     </div>
   </div>
-
 </div>
-
 <div class="tk"><div class="tkl">SDA 2026</div><div class="tkc" id="tkc">—</div></div>
-
 <script>
 var JSON_URL = 'https://petterson-bot.github.io/sda2026-tv/dados.json';
-
+function fmtVal(v) {
+  if (!v) return 'R$ 0';
+  if (v >= 1000000) return 'R$ '+(v/1000000).toFixed(1)+'M';
+  if (v >= 1000)    return 'R$ '+(v/1000).toFixed(1)+'k';
+  return 'R$ '+v.toFixed(0);
+}
 function fotoEl(foto, nome, cls) {
   if (foto) return '<img src="'+foto+'" class="'+cls+'" onerror="this.style.display=\'none\'">';
   return '<div class="'+cls+'-ph">'+nome[0]+'</div>';
 }
-
 function renderVcard(v, i) {
   var el = document.createElement('div');
   el.className = 'vcard'+(i===0?' vcard-1':'');
@@ -222,12 +161,10 @@ function renderVcard(v, i) {
     '<div class="vcard-num">'+v.qtd+'</div>';
   return el;
 }
-
 function render(d) {
   var meta = d.meta, tot = d.totalGeralK;
   var pct  = meta > 0 ? (tot/meta*100) : 0;
   var falt = Math.max(meta - tot, 0);
-
   document.getElementById('m-meta').textContent  = meta;
   document.getElementById('m-meta2').textContent = meta;
   document.getElementById('m-tot').textContent   = tot;
@@ -235,15 +172,12 @@ function render(d) {
   document.getElementById('m-pct').textContent   = pct.toFixed(1)+'% atingido';
   document.getElementById('m-rest').textContent  = (meta>0?(falt/meta*100).toFixed(1):'100.0')+'% restante';
   document.getElementById('m-falt').textContent  = falt;
+  document.getElementById('m-valor').textContent = fmtVal(d.totalGeralValor || 0);
   document.getElementById('atu').textContent     = 'Dados: '+d.ts;
-
-  // Semana vigente
   document.getElementById('sem-label').textContent = d.semVigente.semana;
   var semEl = document.getElementById('sem-rank');
   semEl.innerHTML = '';
   d.semVigente.rank.forEach(function(v,i){ semEl.appendChild(renderVcard(v,i)); });
-
-  // Lote vigente
   document.getElementById('lote-nome').textContent = d.loteVigente.nome || '—';
   var loteEl = document.getElementById('lote-cards');
   loteEl.innerHTML = '';
@@ -259,28 +193,21 @@ function render(d) {
       '</div>';
     loteEl.appendChild(el);
   });
-
-  // Ranking geral
   var geralEl = document.getElementById('geral-rank');
   geralEl.innerHTML = '';
   d.rankGeral.forEach(function(v,i){ geralEl.appendChild(renderVcard(v,i)); });
-
-  // Ticker
   var tk = ['META: '+tot+' / '+meta+'  ·  '+pct.toFixed(1)+'% atingido  ·  FALTAM '+falt+' ingressos'];
   d.rankGeral.forEach(function(v){ tk.push(v.nome.toUpperCase()+': '+v.qtd+' ingressos'); });
   document.getElementById('tkc').textContent = tk.join('     ·     ');
-
   document.getElementById('loading').style.display = 'none';
   document.getElementById('page').style.display    = 'grid';
 }
-
 function buscar() {
   fetch(JSON_URL+'?t='+Date.now())
     .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(function(d){ render(d); })
     .catch(function(e){ document.getElementById('atu').textContent = 'Erro: '+e.message; });
 }
-
 function tick() {
   var a = new Date();
   var h = ('0'+a.getHours()).slice(-2), m = ('0'+a.getMinutes()).slice(-2), s = ('0'+a.getSeconds()).slice(-2);
@@ -289,7 +216,6 @@ function tick() {
   var ms=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
   document.getElementById('dat').textContent = ds[a.getDay()]+', '+a.getDate()+' '+ms[a.getMonth()]+' '+a.getFullYear();
 }
-
 buscar(); tick();
 setInterval(tick, 1000);
 setInterval(buscar, 60000);
