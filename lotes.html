@@ -182,6 +182,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
         <div class="mnum" id="tot-qtd">—</div>
         <div class="mde">/ <span id="tot-meta2">1271</span></div>
       </div>
+      <div style="text-align:center;font-size:clamp(11px,1.1vw,15px);font-weight:700;color:var(--ci);margin-bottom:4px;" id="tot-val">—</div>
       <div class="bbg"><div class="bbf" id="tot-bar" style="width:0%"></div></div>
       <div style="display:flex;justify-content:space-between;font-size:clamp(8px,0.75vw,11px);font-weight:700;">
         <span style="color:var(--g)" id="tot-pct">—</span>
@@ -280,6 +281,7 @@ function render(d) {
   var pct  = meta > 0 ? (tot/meta*100) : 0;
   var falt = Math.max(meta - tot, 0);
   document.getElementById('tot-qtd').textContent  = tot;
+  document.getElementById('tot-val').textContent  = fmtVal(d.totalGeral.valor);
   document.getElementById('tot-meta').textContent = meta;
   document.getElementById('tot-meta2').textContent= meta;
   document.getElementById('tot-bar').style.width  = Math.min(pct,100).toFixed(1)+'%';
