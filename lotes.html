@@ -41,6 +41,21 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .bbf{height:8px;border-radius:50px;background:linear-gradient(90deg,var(--g2),var(--g));transition:width 1s;}
 .fbox{width:100%;background:rgba(255,68,68,.06);border:1px solid rgba(255,68,68,.2);border-radius:10px;padding:clamp(5px,0.7vh,9px);text-align:center;}
 .fnum{font-family:"Bebas Neue",sans-serif;font-size:clamp(26px,3.5vw,46px);line-height:1;color:var(--la);}
+.canal-card-main{flex:1;border-radius:10px;padding:clamp(10px,1.2vh,16px) clamp(12px,1.3vw,20px);display:flex;align-items:center;gap:clamp(10px,1.2vw,18px);}
+.canal-card-main.trafico {background:rgba(33,150,243,.08);border:1px solid rgba(33,150,243,.3);border-left:3px solid var(--az);}
+.canal-card-main.comercial{background:rgba(76,175,3,.08);border:1px solid rgba(76,175,3,.3);border-left:3px solid var(--g);}
+.canal-card-main.organico {background:rgba(255,152,0,.08);border:1px solid rgba(255,152,0,.3);border-left:3px solid var(--am);}
+.canal-card-foto{width:clamp(42px,4.5vw,64px);height:clamp(42px,4.5vw,64px);border-radius:50%;object-fit:cover;flex-shrink:0;}
+.canal-card-main.trafico  .canal-card-foto{border:2px solid var(--az);box-shadow:0 0 10px rgba(33,150,243,.4);}
+.canal-card-main.comercial .canal-card-foto{border:2px solid var(--g);box-shadow:0 0 10px rgba(76,175,3,.4);}
+.canal-card-main.organico  .canal-card-foto{border:2px solid var(--am);box-shadow:0 0 10px rgba(255,152,0,.4);}
+.canal-card-info{flex:1;}
+.canal-card-nome{font-size:clamp(9px,0.85vw,12px);font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:2px;}
+.canal-card-main.trafico  .canal-card-nome{color:var(--az);}
+.canal-card-main.comercial .canal-card-nome{color:var(--g);}
+.canal-card-main.organico  .canal-card-nome{color:var(--am);}
+.canal-card-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(32px,4vw,56px);line-height:1;color:var(--br);}
+.canal-card-val{font-size:clamp(9px,0.85vw,12px);color:var(--ci);margin-top:2px;}
 .tit{font-family:"Bebas Neue",sans-serif;font-size:clamp(16px,2vw,28px);letter-spacing:3px;color:var(--br);text-align:center;line-height:1.05;}
 .tit span{color:var(--g);}
 
@@ -179,32 +194,6 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
       <div style="font-size:clamp(7px,0.65vw,9px);font-weight:700;letter-spacing:2px;color:rgba(255,68,68,.55);text-transform:uppercase;">ingressos restantes</div>
     </div>
 
-    <div class="sep-line"></div>
-    <div class="canal-tit">Por Canal</div>
-    <div class="canal-box">
-      <div class="canal-item trafico">
-        <div class="canal-nome">Tráfego</div>
-        <div class="canal-nums">
-          <div class="canal-qtd" id="c-traf-qtd">—</div>
-          <div class="canal-valor" id="c-traf-val">—</div>
-        </div>
-      </div>
-      <div class="canal-item comercial">
-        <div class="canal-nome">Comercial</div>
-        <div class="canal-nums">
-          <div class="canal-qtd" id="c-com-qtd">—</div>
-          <div class="canal-valor" id="c-com-val">—</div>
-        </div>
-      </div>
-      <div class="canal-item organico">
-        <div class="canal-nome">Orgânico</div>
-        <div class="canal-nums">
-          <div class="canal-qtd" id="c-org-qtd">—</div>
-          <div class="canal-valor" id="c-org-val">—</div>
-        </div>
-      </div>
-    </div>
-
     <div class="rod">
       <div class="rel" id="rel">--:--:--</div>
       <div class="dat" id="dat">—</div>
@@ -227,6 +216,12 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
     <div class="lotes-lista">
       <div class="panel-tit"><span class="dot"></span>Todos os Lotes</div>
       <div class="lotes-scroll" id="lotes-scroll"></div>
+    </div>
+
+    <!-- POR CANAL -->
+    <div style="flex-shrink:0;">
+      <div class="panel-tit"><span class="dot"></span>Por Canal</div>
+      <div id="canal-cards" style="display:flex;gap:clamp(8px,1vw,16px);"></div>
     </div>
 
   </div>
@@ -297,6 +292,31 @@ function render(d) {
   document.getElementById('c-com-val').textContent  = fmtVal(d.totalGeral.comercial.valor);
   document.getElementById('c-org-qtd').textContent  = d.totalGeral.organico.qtd;
   document.getElementById('c-org-val').textContent  = fmtVal(d.totalGeral.organico.valor);
+
+  // Canal cards na área principal
+  var fotos = d.fotos || {};
+  var canalCards = document.getElementById('canal-cards');
+  canalCards.innerHTML = '';
+  var canaisConf = [
+    { key:'trafico',   cls:'trafico',   nome:'Tráfego',  foto:fotos.trafico   },
+    { key:'comercial', cls:'comercial', nome:'Comercial', foto:fotos.comercial },
+    { key:'organico',  cls:'organico',  nome:'Orgânico',  foto:fotos.organico  }
+  ];
+  canaisConf.forEach(function(cfg) {
+    var dados = d.totalGeral[cfg.key] || { qtd:0, valor:0 };
+    var el = document.createElement('div');
+    el.className = 'canal-card-main ' + cfg.cls;
+    var fotoHtml = cfg.foto
+      ? '<img src="'+cfg.foto+'" class="canal-card-foto" onerror="this.style.display=\'none\'">'
+      : '<div class="canal-card-foto" style="background:#222;display:flex;align-items:center;justify-content:center;font-family:\'Bebas Neue\',sans-serif;font-size:22px;">'+cfg.nome[0]+'</div>';
+    el.innerHTML = fotoHtml +
+      '<div class="canal-card-info">'+
+        '<div class="canal-card-nome">'+cfg.nome+'</div>'+
+        '<div class="canal-card-qtd">'+dados.qtd+'</div>'+
+        '<div class="canal-card-val">'+fmtVal(dados.valor)+'</div>'+
+      '</div>';
+    canalCards.appendChild(el);
+  });
   document.getElementById('atu').textContent = 'Dados: '+d.ts;
 
   // Lote vigente
