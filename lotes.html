@@ -34,6 +34,13 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .logo span{color:var(--g);}
 .logo-sub{font-size:clamp(7px,0.75vw,11px);font-weight:700;letter-spacing:6px;color:var(--g);text-transform:uppercase;text-align:center;}
 .sep{width:40px;height:2px;background:var(--g);}
+.mgrande{display:flex;align-items:flex-end;justify-content:center;gap:5px;margin-bottom:5px;}
+.mnum{font-family:"Bebas Neue",sans-serif;font-size:clamp(36px,4.5vw,60px);line-height:1;color:var(--br);}
+.mde{font-family:"Bebas Neue",sans-serif;font-size:clamp(13px,1.5vw,20px);color:var(--ci);padding-bottom:2px;}
+.bbg{background:#1a1a1a;border-radius:50px;height:8px;overflow:hidden;margin-bottom:5px;}
+.bbf{height:8px;border-radius:50px;background:linear-gradient(90deg,var(--g2),var(--g));transition:width 1s;}
+.fbox{width:100%;background:rgba(255,68,68,.06);border:1px solid rgba(255,68,68,.2);border-radius:10px;padding:clamp(5px,0.7vh,9px);text-align:center;}
+.fnum{font-family:"Bebas Neue",sans-serif;font-size:clamp(26px,3.5vw,46px);line-height:1;color:var(--la);}
 .tit{font-family:"Bebas Neue",sans-serif;font-size:clamp(16px,2vw,28px);letter-spacing:3px;color:var(--br);text-align:center;line-height:1.05;}
 .tit span{color:var(--g);}
 
@@ -155,23 +162,28 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
     <div class="tit">TOTAL DE<br><span>INGRESSOS</span></div>
 
     <div class="total-box">
-      <div class="total-tit">Geral Acumulado</div>
-      <div class="total-row">
-        <span class="total-label">Quantidade</span>
-        <div class="total-val" id="tot-qtd">—</div>
+      <div class="total-tit">Total Geral · Meta <span id="tot-meta">1271</span></div>
+      <div class="mgrande">
+        <div class="mnum" id="tot-qtd">—</div>
+        <div class="mde">/ <span id="tot-meta2">1271</span></div>
       </div>
-      <div class="total-row">
-        <span class="total-label">Valor Total</span>
-        <div class="total-val" id="tot-val">—</div>
+      <div class="bbg"><div class="bbf" id="tot-bar" style="width:0%"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:clamp(8px,0.75vw,11px);font-weight:700;">
+        <span style="color:var(--g)" id="tot-pct">—</span>
+        <span style="color:var(--la)" id="tot-rest">—</span>
       </div>
+    </div>
+
+    <div class="fbox">
+      <div class="fnum" id="tot-falt">—</div>
+      <div style="font-size:clamp(7px,0.65vw,9px);font-weight:700;letter-spacing:2px;color:rgba(255,68,68,.55);text-transform:uppercase;">ingressos restantes</div>
     </div>
 
     <div class="sep-line"></div>
     <div class="canal-tit">Por Canal</div>
-
     <div class="canal-box">
       <div class="canal-item trafico">
-        <div class="canal-nome">Tráfego (CPC)</div>
+        <div class="canal-nome">Tráfego</div>
         <div class="canal-nums">
           <div class="canal-qtd" id="c-traf-qtd">—</div>
           <div class="canal-valor" id="c-traf-val">—</div>
@@ -268,8 +280,17 @@ function renderLoteCard(lote) {
 
 function render(d) {
   // Totais laterais
-  document.getElementById('tot-qtd').textContent = d.totalGeral.qtd;
-  document.getElementById('tot-val').textContent  = fmtVal(d.totalGeral.valor);
+  var meta = 1271;
+  var tot  = d.totalGeral.qtd;
+  var pct  = meta > 0 ? (tot/meta*100) : 0;
+  var falt = Math.max(meta - tot, 0);
+  document.getElementById('tot-qtd').textContent  = tot;
+  document.getElementById('tot-meta').textContent = meta;
+  document.getElementById('tot-meta2').textContent= meta;
+  document.getElementById('tot-bar').style.width  = Math.min(pct,100).toFixed(1)+'%';
+  document.getElementById('tot-pct').textContent  = pct.toFixed(1)+'% atingido';
+  document.getElementById('tot-rest').textContent = (falt/meta*100).toFixed(1)+'% restante';
+  document.getElementById('tot-falt').textContent = falt;
   document.getElementById('c-traf-qtd').textContent = d.totalGeral.trafico.qtd;
   document.getElementById('c-traf-val').textContent = fmtVal(d.totalGeral.trafico.valor);
   document.getElementById('c-com-qtd').textContent  = d.totalGeral.comercial.qtd;
