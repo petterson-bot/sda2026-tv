@@ -109,10 +109,6 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
       <div class="fnum" id="m-falt">—</div>
       <div class="ftxt">ingressos restantes</div>
     </div>
-    <div class="vbox">
-      <div class="vtit">Valor Total</div>
-      <div class="vnum" id="m-valor">—</div>
-    </div>
     <div class="rod">
       <div class="rel" id="rel">--:--:--</div>
       <div class="dat" id="dat">—</div>
@@ -172,7 +168,6 @@ function render(d) {
   document.getElementById('m-pct').textContent   = pct.toFixed(1)+'% atingido';
   document.getElementById('m-rest').textContent  = (meta>0?(falt/meta*100).toFixed(1):'100.0')+'% restante';
   document.getElementById('m-falt').textContent  = falt;
-  document.getElementById('m-valor').textContent = fmtVal(d.totalVendedoresValor || 0);
   document.getElementById('atu').textContent     = 'Dados: '+d.ts;
   document.getElementById('sem-label').textContent = d.semVigente.semana;
   var semEl = document.getElementById('sem-rank');
