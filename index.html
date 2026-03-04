@@ -123,7 +123,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
     </div>
     <div class="baixo-area">
       <div class="semana-area">
-        <div class="panel-tit"><span class="dot"></span>Semana Vigente</div>
+        <div class="panel-tit"><span class="dot"></span>Semana · Ticket Médio</div>
         <div class="sem-label" id="sem-label">—</div>
         <div class="rank-list" id="sem-rank"></div>
       </div>
@@ -157,6 +157,21 @@ function renderVcard(v, i) {
     '<div class="vcard-num">'+v.qtd+'</div>';
   return el;
 }
+function renderVcardSem(v, i) {
+  var tm = v.ticketMedio || 0;
+  var tmFmt = tm >= 1000 ? 'R$'+(tm/1000).toFixed(1)+'k' : 'R$'+tm;
+  var el = document.createElement('div');
+  el.className = 'vcard'+(i===0?' vcard-1':'');
+  el.innerHTML =
+    '<div class="vcard-pos">'+(i+1)+'</div>'+
+    fotoEl(v.foto, v.nome, 'foto')+
+    '<div class="vcard-info">'+
+      '<div class="vcard-nome">'+v.nome+'</div>'+
+      '<div style="font-size:clamp(8px,0.7vw,10px);color:#888;font-weight:600">'+v.qtd+' ing.</div>'+
+    '</div>'+
+    '<div class="vcard-num" style="font-size:clamp(16px,2vw,28px)">'+tmFmt+'</div>';
+  return el;
+}
 function render(d) {
   var meta = d.meta, tot = d.totalGeralK;
   var pct  = meta > 0 ? (tot/meta*100) : 0;
@@ -172,7 +187,7 @@ function render(d) {
   document.getElementById('sem-label').textContent = d.semVigente.semana;
   var semEl = document.getElementById('sem-rank');
   semEl.innerHTML = '';
-  d.semVigente.rank.forEach(function(v,i){ semEl.appendChild(renderVcard(v,i)); });
+  d.semVigente.rank.forEach(function(v,i){ semEl.appendChild(renderVcardSem(v,i)); });
   document.getElementById('lote-nome').textContent = d.loteVigente.nome || '—';
   var loteEl = document.getElementById('lote-cards');
   loteEl.innerHTML = '';
