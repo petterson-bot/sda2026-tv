@@ -2,554 +2,569 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Dashboard de Vendas — SDA 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Dashboard SDA 2026</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Inter',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;font-size:14px}
-  a{text-decoration:none}
+:root{
+  --bg:#0f172a;--surface:#1e293b;--surface2:#263347;--border:#ffffff0d;
+  --purple:#6366f1;--pink:#ec4899;--green:#10b981;--yellow:#f59e0b;
+  --red:#ef4444;--blue:#60a5fa;--violet:#8b5cf6;
+  --text:#f8fafc;--muted:#94a3b8;--dim:#64748b;
+  --r:12px;--r-sm:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
 
-  /* ── LAYOUT ── */
-  .page{max-width:1280px;margin:0 auto;padding:16px}
-  header{padding:20px 0 16px}
-  header h1{font-size:clamp(18px,4vw,26px);font-weight:900;color:#f8fafc;line-height:1.2}
-  header p{color:#64748b;font-size:12px;margin-top:4px}
-  .badge-live{display:inline-flex;align-items:center;gap:5px;background:#10b98122;color:#10b981;border:1px solid #10b98144;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;margin-top:8px}
-  .dot-live{width:7px;height:7px;background:#10b981;border-radius:50%;animation:pulse 1.5s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+/* ── WRAPPER ── */
+.wrap{width:100%;max-width:1400px;margin:0 auto;padding:clamp(12px,3vw,28px)}
 
-  /* ── TABS ── */
-  .tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:20px;scrollbar-width:none}
-  .tabs::-webkit-scrollbar{display:none}
-  .tab{flex-shrink:0;padding:8px 16px;border-radius:8px;border:1px solid #1e293b;background:#1e293b;color:#64748b;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap}
-  .tab.active{background:#6366f1;color:#fff;border-color:#6366f1}
+/* ── HEADER ── */
+.hdr{margin-bottom:clamp(12px,2.5vw,24px)}
+.hdr h1{font-size:clamp(16px,3.5vw,26px);font-weight:900;color:var(--text);line-height:1.2}
+.hdr-sub{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+.hdr-sub p{font-size:clamp(11px,1.5vw,13px);color:var(--dim)}
+.live{display:inline-flex;align-items:center;gap:5px;background:#10b98118;color:var(--green);border:1px solid #10b98133;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700}
+.dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
-  /* ── CARDS ── */
-  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:20px}
-  .card{background:#1e293b;border-radius:12px;padding:16px;border:1px solid #ffffff08}
-  .card.accent{border-color:#6366f155}
-  .card .label{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
-  .card .val{font-size:clamp(22px,5vw,32px);font-weight:900;line-height:1}
-  .card .sub{font-size:11px;color:#64748b;margin-top:4px}
-  .card .tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-top:6px}
+/* ── TABS ── */
+.tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:2px;margin-bottom:clamp(12px,2vw,20px);scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:clamp(6px,1.2vw,9px) clamp(10px,2vw,16px);border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface);color:var(--dim);font-size:clamp(11px,1.3vw,13px);font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap}
+.tab-btn:hover{color:var(--muted);border-color:#ffffff1a}
+.tab-btn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
 
-  /* ── PROGRESSO ── */
-  .progress-wrap{background:#1e293b;border-radius:12px;padding:20px;margin-bottom:20px}
-  .progress-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-  .progress-bar{background:#334155;border-radius:99px;height:14px;overflow:hidden;margin-bottom:10px}
-  .progress-fill{background:linear-gradient(90deg,#6366f1,#ec4899);border-radius:99px;height:100%;transition:width 1s ease}
-  .progress-labels{display:flex;justify-content:space-between;font-size:11px;color:#64748b;flex-wrap:wrap;gap:4px}
+/* ── PANEL ── */
+.panel{display:none}.panel.on{display:block}
 
-  /* ── SEÇÃO GENÉRICA ── */
-  .section{margin-bottom:24px}
-  .section-title{font-size:13px;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-  .section-title::after{content:'';flex:1;height:1px;background:#1e293b}
+/* ── KPI GRID ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(120px,18vw,200px),1fr));gap:clamp(8px,1.5vw,14px);margin-bottom:clamp(12px,2vw,20px)}
+.kpi{background:var(--surface);border-radius:var(--r);padding:clamp(12px,2vw,18px);border:1px solid var(--border)}
+.kpi-label{font-size:clamp(9px,1.1vw,11px);color:var(--dim);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:700}
+.kpi-val{font-size:clamp(20px,4vw,30px);font-weight:900;line-height:1;word-break:break-all}
+.kpi-sub{font-size:clamp(10px,1.2vw,12px);color:var(--dim);margin-top:4px}
+.kpi-tag{display:inline-block;font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;margin-top:6px}
 
-  /* ── GRID LOTES ── */
-  .lotes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-  .lote-card{background:#1e293b;border-radius:10px;padding:14px;border-left:4px solid #6366f1;position:relative;overflow:hidden}
-  .lote-card.encerrado{opacity:.65}
-  .lote-name{font-weight:800;font-size:13px;color:#f8fafc;margin-bottom:2px}
-  .lote-periodo{font-size:10px;color:#64748b;margin-bottom:8px}
-  .lote-qtd{font-size:24px;font-weight:900;line-height:1}
-  .lote-receita{font-size:11px;color:#64748b;margin-top:3px}
-  .lote-badge{position:absolute;top:10px;right:10px;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px}
-  .badge-enc{background:#1e293b;color:#64748b;border:1px solid #334155}
-  .badge-ativo{background:#10b98122;color:#10b981;border:1px solid #10b98144}
-  .lote-meta-bar{background:#0f172a;border-radius:4px;height:4px;margin-top:8px;overflow:hidden}
-  .lote-meta-fill{height:100%;border-radius:4px;transition:width .8s}
+/* ── PROGRESS ── */
+.prog-box{background:var(--surface);border-radius:var(--r);padding:clamp(14px,2.5vw,22px);margin-bottom:clamp(12px,2vw,20px)}
+.prog-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.prog-top-left h2{font-size:clamp(14px,2.5vw,18px);font-weight:900}
+.prog-top-left p{font-size:clamp(10px,1.2vw,12px);color:var(--dim);margin-top:2px}
+.prog-pct{font-size:clamp(28px,6vw,44px);font-weight:900;color:var(--purple);line-height:1}
+.prog-track{background:#334155;border-radius:99px;height:clamp(10px,1.5vw,16px);overflow:hidden;margin-bottom:8px}
+.prog-fill{background:linear-gradient(90deg,var(--purple),var(--pink));border-radius:99px;height:100%;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.prog-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;font-size:clamp(10px,1.2vw,12px);color:var(--dim)}
+.prog-foot span:last-child{color:var(--yellow);font-weight:700}
 
-  /* ── COMPARATIVO ── */
-  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  @media(max-width:480px){.compare-grid{grid-template-columns:1fr}}
-  .compare-card{background:#1e293b;border-radius:12px;padding:16px;text-align:center}
-  .compare-year{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-  .compare-num{font-size:36px;font-weight:900;line-height:1}
-  .compare-label{font-size:11px;color:#64748b;margin-top:4px}
-  .compare-sub{font-size:12px;color:#94a3b8;margin-top:8px;padding-top:8px;border-top:1px solid #334155}
+/* ── SECTION TITLE ── */
+.sec{margin-bottom:clamp(16px,2.5vw,28px)}
+.sec-title{font-size:clamp(10px,1.2vw,12px);font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;display:flex;align-items:center;gap:8px;margin-bottom:clamp(10px,1.5vw,16px)}
+.sec-title::after{content:'';flex:1;height:1px;background:#ffffff0a}
 
-  /* ── MIX ── */
-  .mix-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  @media(max-width:400px){.mix-grid{grid-template-columns:1fr 1fr}}
-  .mix-card{background:#1e293b;border-radius:10px;padding:14px;text-align:center}
-  .mix-pct{font-size:28px;font-weight:900;line-height:1;margin-bottom:4px}
-  .mix-label{font-size:11px;color:#94a3b8}
-  .mix-diff{font-size:10px;margin-top:4px;font-weight:700}
+/* ── LOTES GRID ── */
+.lotes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(150px,20vw,220px),1fr));gap:clamp(8px,1.2vw,12px)}
+.lote-card{background:var(--surface);border-radius:var(--r);padding:clamp(12px,1.8vw,16px);border-left:3px solid #6366f1;position:relative;overflow:hidden;transition:.2s}
+.lote-card:hover{transform:translateY(-1px);box-shadow:0 4px 20px #0004}
+.lote-card.closed{opacity:.6}
+.lote-name{font-weight:800;font-size:clamp(11px,1.4vw,13px);color:var(--text);margin-bottom:2px;padding-right:60px}
+.lote-period{font-size:clamp(9px,1.1vw,11px);color:var(--dim);margin-bottom:8px}
+.lote-num{font-size:clamp(22px,4vw,30px);font-weight:900;line-height:1}
+.lote-rev{font-size:clamp(10px,1.2vw,12px);color:var(--dim);margin-top:3px}
+.lote-badge-abs{position:absolute;top:10px;right:10px;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px}
+.b-closed{background:#33415533;color:var(--dim)}
+.b-open{background:#10b98118;color:var(--green)}
+.meta-bar{background:#0f172a;border-radius:4px;height:4px;margin-top:8px;overflow:hidden}
+.meta-fill{height:4px;border-radius:4px;transition:width .8s}
+.meta-txt{font-size:clamp(9px,1vw,10px);color:var(--dim);margin-top:3px}
 
-  /* ── SEMANAS ── */
-  .semanas-table{width:100%;border-collapse:collapse;font-size:12px}
-  .semanas-table th{text-align:left;color:#64748b;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.6px;padding:8px 10px;border-bottom:1px solid #1e293b}
-  .semanas-table td{padding:10px;border-bottom:1px solid #1e293b10;vertical-align:middle}
-  .semanas-table tr.ativo-row{background:#6366f111}
-  .semanas-table tr.enc-row{opacity:.5}
-  .sem-badge{display:inline-block;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:900;text-align:center;line-height:22px;color:#fff}
-  .sem-bar-wrap{background:#334155;border-radius:4px;height:6px;min-width:60px}
-  .sem-bar-fill{height:6px;border-radius:4px}
-  .sem-check{color:#10b981;font-size:14px}
-  .sem-cross{color:#ef4444;font-size:14px}
-  /* mobile semanas */
-  .sem-cards{display:none}
-  .sem-card{background:#1e293b;border-radius:10px;padding:14px;margin-bottom:8px;border-left:4px solid #6366f1}
-  .sem-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:4px}
+/* ── MIX ── */
+.mix-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,2vw,16px)}
+.mix-half-title{font-size:clamp(9px,1.1vw,11px);color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.mix-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1vw,10px)}
+.mix-c{background:var(--surface);border-radius:var(--r-sm);padding:clamp(10px,1.5vw,14px);text-align:center;border-bottom:3px solid transparent}
+.mix-pct{font-size:clamp(18px,3.5vw,26px);font-weight:900;line-height:1;margin-bottom:3px}
+.mix-cat{font-size:clamp(9px,1.1vw,11px);color:var(--muted)}
+.mix-diff{font-size:clamp(9px,1vw,10px);font-weight:800;margin-top:3px}
 
-  /* ── FECHAMENTOS ── */
-  .fechamentos-list{display:flex;flex-direction:column;gap:8px}
-  .fech-item{background:#1e293b;border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-  .fech-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-  .fech-content{flex:1;min-width:0}
-  .fech-lote{font-size:11px;color:#64748b;margin-bottom:2px}
-  .fech-tier{font-size:13px;font-weight:800;color:#f8fafc}
-  .fech-data{font-size:12px;color:#94a3b8;margin-top:2px}
-  .fech-status{font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;flex-shrink:0}
-  .status-enc{background:#33415522;color:#64748b}
-  .status-ativo{background:#10b98122;color:#10b981;animation:glow .8s infinite alternate}
-  .status-prox{background:#6366f122;color:#a5b4fc}
-  @keyframes glow{from{box-shadow:0 0 0 #10b98100}to{box-shadow:0 0 8px #10b98166}}
+/* ── COMPARE ── */
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,2vw,16px);margin-bottom:clamp(12px,2vw,20px)}
+.cmp-card{background:var(--surface);border-radius:var(--r);padding:clamp(16px,2.5vw,24px);text-align:center}
+.cmp-year{font-size:clamp(10px,1.2vw,12px);font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.cmp-num{font-size:clamp(36px,8vw,56px);font-weight:900;line-height:1}
+.cmp-label{font-size:clamp(10px,1.2vw,12px);color:var(--dim);margin-top:4px}
+.cmp-rev{font-size:clamp(12px,1.8vw,16px);font-weight:800;margin-top:10px;padding-top:10px;border-top:1px solid #ffffff0a;color:var(--muted)}
 
-  /* ── ANÁLISES ── */
-  .analise-section{background:#1e293b;border-radius:12px;padding:18px;margin-bottom:12px}
-  .analise-title{font-size:13px;font-weight:800;margin-bottom:14px}
-  .analise-item{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
-  .analise-n{font-weight:900;font-size:12px;min-width:20px;padding-top:1px}
-  .analise-text{font-size:12px;color:#cbd5e1;line-height:1.7}
+/* ── SEMANAS — DESKTOP TABLE ── */
+.sem-table-wrap{overflow-x:auto}
+.sem-table{width:100%;border-collapse:collapse;font-size:clamp(11px,1.3vw,13px)}
+.sem-table th{text-align:left;color:var(--dim);font-size:clamp(9px,1vw,11px);text-transform:uppercase;letter-spacing:.6px;padding:8px 12px;border-bottom:1px solid #ffffff0a;font-weight:700;white-space:nowrap}
+.sem-table td{padding:clamp(8px,1.2vw,12px);border-bottom:1px solid #ffffff05;vertical-align:middle}
+.sem-table tr.tr-active{background:#6366f10d}
+.sem-table tr.tr-done{opacity:.5}
+.sem-num{display:inline-flex;width:clamp(22px,2.5vw,26px);height:clamp(22px,2.5vw,26px);align-items:center;justify-content:center;border-radius:50%;font-size:clamp(9px,1.1vw,11px);font-weight:900;color:#fff}
+.bar-wrap{background:#334155;border-radius:4px;height:6px;min-width:clamp(50px,6vw,80px)}
+.bar-fill{height:6px;border-radius:4px}
 
-  /* ── TIMESTAMP ── */
-  .ts-bar{text-align:center;font-size:11px;color:#334155;padding:12px 0 20px}
+/* ── SEMANAS — MOBILE CARDS ── */
+.sem-mob{display:none;flex-direction:column;gap:8px}
+.sem-mob-card{background:var(--surface);border-radius:var(--r);padding:14px;border-left:3px solid var(--purple)}
+.sem-mob-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px}
+.sem-mob-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
+.sem-mob-num-block{text-align:center}
+.sem-mob-num-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.sem-mob-num-val{font-size:22px;font-weight:900;line-height:1}
 
-  /* ── SPINNER ── */
-  .loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:16px}
-  .spinner{width:40px;height:40px;border:3px solid #1e293b;border-top-color:#6366f1;border-radius:50%;animation:spin .8s linear infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
+/* ── FECHAMENTOS ── */
+.fech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(240px,30vw,400px),1fr));gap:clamp(8px,1.2vw,12px)}
+.fech-card{background:var(--surface);border-radius:var(--r);padding:clamp(12px,1.8vw,16px);display:flex;align-items:center;gap:12px}
+.fech-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.fech-body{flex:1;min-width:0}
+.fech-lote{font-size:clamp(9px,1.1vw,11px);color:var(--dim);margin-bottom:2px}
+.fech-tier{font-size:clamp(12px,1.6vw,14px);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fech-data{font-size:clamp(10px,1.2vw,12px);color:var(--muted);margin-top:2px}
+.fech-st{font-size:clamp(9px,1vw,11px);font-weight:800;padding:3px 10px;border-radius:20px;flex-shrink:0;white-space:nowrap}
+.st-done{background:#33415533;color:var(--dim)}
+.st-live{background:#10b98118;color:var(--green)}
+.st-next{background:#6366f118;color:#a5b4fc}
 
-  /* ── RESPONSIVE ── */
-  @media(max-width:768px){
-    .page{padding:12px}
-    .cards{grid-template-columns:repeat(2,1fr)}
-    .lotes-grid{grid-template-columns:repeat(2,1fr)}
-    .semanas-table{display:none}
-    .sem-cards{display:block}
-    .tabs .tab{padding:7px 12px;font-size:11px}
-  }
-  @media(max-width:480px){
-    .cards{grid-template-columns:repeat(2,1fr)}
-    .lotes-grid{grid-template-columns:1fr 1fr}
-    .mix-grid{grid-template-columns:repeat(3,1fr)}
-    header h1{font-size:18px}
-  }
-  @media(min-width:1024px){
-    .fechamentos-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  }
-  .hidden{display:none!important}
+/* ── ANÁLISES ── */
+.analise-block{background:var(--surface);border-radius:var(--r);padding:clamp(14px,2vw,20px);margin-bottom:clamp(10px,1.5vw,14px)}
+.analise-head{font-size:clamp(12px,1.5vw,14px);font-weight:800;margin-bottom:14px}
+.analise-row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.analise-n{font-weight:900;font-size:clamp(11px,1.3vw,13px);min-width:20px;flex-shrink:0;padding-top:1px}
+.analise-txt{font-size:clamp(11px,1.3vw,13px);color:#cbd5e1;line-height:1.7}
+
+/* ── FOOTER ── */
+.foot{text-align:center;font-size:11px;color:#334155;padding:16px 0 8px}
+
+/* ── LOADING ── */
+.loading{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.spin{width:36px;height:36px;border:3px solid var(--surface);border-top-color:var(--purple);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hidden{display:none!important}
+
+/* ── RESPONSIVE BREAKPOINTS ── */
+@media(max-width:900px){
+  .mix-wrap{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .lotes-grid{grid-template-columns:1fr 1fr}
+  .cmp-grid{grid-template-columns:1fr 1fr}
+  .fech-grid{grid-template-columns:1fr}
+  .sem-table-wrap{display:none}
+  .sem-mob{display:flex}
+}
+@media(max-width:420px){
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .lotes-grid{grid-template-columns:1fr 1fr}
+  .cmp-grid{grid-template-columns:1fr}
+  .mix-cards{grid-template-columns:repeat(3,1fr)}
+  .cmp-num{font-size:clamp(28px,12vw,44px)}
+}
 </style>
 </head>
 <body>
-<div class="page">
 
+<div class="wrap">
+  <!-- LOADING -->
   <div id="loading" class="loading">
-    <div class="spinner"></div>
-    <p style="color:#64748b;font-size:13px">Carregando dados em tempo real…</p>
+    <div class="spin"></div>
+    <p style="color:var(--dim);font-size:13px">Carregando dados…</p>
   </div>
 
+  <!-- APP -->
   <div id="app" class="hidden">
-    <header>
+
+    <!-- HEADER -->
+    <div class="hdr">
       <h1>🎯 Dashboard de Vendas — SDA 2026</h1>
-      <p id="subheader">Teatro Bradesco · 24 a 26 de Abril de 2026</p>
-      <div class="badge-live"><span class="dot-live"></span><span id="ts-badge">Atualizado agora</span></div>
-    </header>
+      <div class="hdr-sub">
+        <p id="hdr-sub">Teatro Bradesco · 24–26/04/2026</p>
+        <div class="live"><span class="dot"></span><span id="hdr-ts">Ao vivo</span></div>
+      </div>
+    </div>
 
     <!-- TABS -->
     <div class="tabs" id="tabs">
-      <div class="tab active" onclick="showTab(0)">📊 Visão Geral</div>
-      <div class="tab" onclick="showTab(1)">📦 Lotes 2026</div>
-      <div class="tab" onclick="showTab(2)">📅 Lotes 2025</div>
-      <div class="tab" onclick="showTab(3)">⚖️ Comparativo</div>
-      <div class="tab" onclick="showTab(4)">📆 Semanas</div>
-      <div class="tab" onclick="showTab(5)">🔒 Fechamentos</div>
-      <div class="tab" onclick="showTab(6)">🔍 Análises</div>
+      <button class="tab-btn on"  onclick="tab(0)">📊 Geral</button>
+      <button class="tab-btn"     onclick="tab(1)">📦 Lotes 2026</button>
+      <button class="tab-btn"     onclick="tab(2)">📅 Lotes 2025</button>
+      <button class="tab-btn"     onclick="tab(3)">⚖️ Comparativo</button>
+      <button class="tab-btn"     onclick="tab(4)">📆 Semanas</button>
+      <button class="tab-btn"     onclick="tab(5)">🔒 Fechamentos</button>
+      <button class="tab-btn"     onclick="tab(6)">🔍 Análises</button>
     </div>
 
-    <!-- TAB 0 — Visão Geral -->
-    <div id="tab-0">
-      <div class="cards" id="kpi-cards"></div>
-      <div class="progress-wrap">
-        <div class="progress-header">
-          <div>
-            <div style="font-size:13px;font-weight:800;color:#f8fafc" id="prog-label">… vendidos</div>
-            <div style="font-size:11px;color:#64748b;margin-top:2px" id="prog-sub"></div>
+    <!-- PANEL 0 — GERAL -->
+    <div class="panel on" id="p0">
+      <div class="kpi-grid" id="kpis"></div>
+      <div class="prog-box">
+        <div class="prog-top">
+          <div class="prog-top-left">
+            <h2 id="prog-h">… vendidos</h2>
+            <p id="prog-sub">Meta: …</p>
           </div>
-          <div style="font-size:28px;font-weight:900;color:#6366f1" id="prog-pct"></div>
+          <div class="prog-pct" id="prog-pct">0%</div>
         </div>
-        <div class="progress-bar"><div class="progress-fill" id="prog-bar" style="width:0%"></div></div>
-        <div class="progress-labels">
-          <span id="prog-left"></span>
-          <span id="prog-right" style="color:#f59e0b;font-weight:700"></span>
-        </div>
-      </div>
-      <!-- Mix categorias -->
-      <div class="section">
-        <div class="section-title">Mix de Categorias</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <div>
-            <div style="font-size:10px;color:#64748b;margin-bottom:8px;text-transform:uppercase;letter-spacing:.6px;font-weight:700">2026 — Atual</div>
-            <div class="mix-grid" id="mix-2026"></div>
-          </div>
-          <div>
-            <div style="font-size:10px;color:#64748b;margin-bottom:8px;text-transform:uppercase;letter-spacing:.6px;font-weight:700">2025 — Referência</div>
-            <div class="mix-grid" id="mix-2025"></div>
-          </div>
+        <div class="prog-track"><div class="prog-fill" id="prog-bar" style="width:0%"></div></div>
+        <div class="prog-foot">
+          <span id="prog-l"></span>
+          <span id="prog-r"></span>
         </div>
       </div>
-      <!-- Top 3 destaques rápidos -->
-      <div class="section">
-        <div class="section-title">Próximos Fechamentos</div>
-        <div class="fechamentos-list" id="prox-fechamentos"></div>
+      <div class="sec">
+        <div class="sec-title">Mix de Categorias</div>
+        <div class="mix-wrap">
+          <div>
+            <div class="mix-half-title">2026 — Atual</div>
+            <div class="mix-cards" id="mix26"></div>
+          </div>
+          <div>
+            <div class="mix-half-title">2025 — Referência</div>
+            <div class="mix-cards" id="mix25"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sec">
+        <div class="sec-title">Próximos Fechamentos</div>
+        <div class="fech-grid" id="prox-fech"></div>
       </div>
     </div>
 
-    <!-- TAB 1 — Lotes 2026 -->
-    <div id="tab-1" class="hidden">
-      <div class="section">
-        <div class="section-title">Lotes SDA 2026</div>
-        <div class="lotes-grid" id="lotes-2026"></div>
+    <!-- PANEL 1 — LOTES 2026 -->
+    <div class="panel hidden" id="p1">
+      <div class="sec">
+        <div class="sec-title">Lotes SDA 2026</div>
+        <div class="lotes-grid" id="lotes26"></div>
       </div>
     </div>
 
-    <!-- TAB 2 — Lotes 2025 -->
-    <div id="tab-2" class="hidden">
-      <div class="section">
-        <div class="section-title">Lotes SDA 2025</div>
-        <div class="lotes-grid" id="lotes-2025"></div>
+    <!-- PANEL 2 — LOTES 2025 -->
+    <div class="panel hidden" id="p2">
+      <div class="sec">
+        <div class="sec-title">Lotes SDA 2025</div>
+        <div class="lotes-grid" id="lotes25"></div>
       </div>
     </div>
 
-    <!-- TAB 3 — Comparativo -->
-    <div id="tab-3" class="hidden">
-      <div class="section">
-        <div class="section-title">Comparativo — Mesma Antecedência</div>
-        <div class="compare-grid" id="compare-cards"></div>
+    <!-- PANEL 3 — COMPARATIVO -->
+    <div class="panel hidden" id="p3">
+      <div class="sec">
+        <div class="sec-title">Comparativo — Mesma Antecedência</div>
+        <div class="cmp-grid" id="cmp"></div>
       </div>
-      <div class="section">
-        <div class="section-title">Projeções</div>
-        <div id="projecao-cards"></div>
+      <div class="sec">
+        <div class="sec-title">Projeções</div>
+        <div id="proj"></div>
       </div>
     </div>
 
-    <!-- TAB 4 — Semanas -->
-    <div id="tab-4" class="hidden">
-      <div class="section">
-        <div class="section-title">Meta Semanal vs Real</div>
-        <!-- Desktop table -->
-        <div style="overflow-x:auto">
-          <table class="semanas-table" id="sem-table">
+    <!-- PANEL 4 — SEMANAS -->
+    <div class="panel hidden" id="p4">
+      <div class="sec">
+        <div class="sec-title">Meta Semanal × Real</div>
+        <!-- desktop -->
+        <div class="sem-table-wrap">
+          <table class="sem-table">
             <thead>
               <tr>
-                <th>#</th>
-                <th>Período</th>
-                <th>Lote / Fase</th>
-                <th>Meta</th>
-                <th>Real</th>
-                <th>Barra</th>
-                <th>Acumulado</th>
+                <th>#</th><th>Período</th><th>Fase</th>
+                <th>Meta</th><th>Real</th><th>%</th><th>Acumulado</th>
               </tr>
             </thead>
             <tbody id="sem-tbody"></tbody>
           </table>
         </div>
-        <!-- Mobile cards -->
-        <div class="sem-cards" id="sem-mobile"></div>
+        <!-- mobile -->
+        <div class="sem-mob" id="sem-mob"></div>
       </div>
     </div>
 
-    <!-- TAB 5 — Fechamentos -->
-    <div id="tab-5" class="hidden">
-      <div class="section">
-        <div class="section-title">Calendário de Fechamentos</div>
-        <div class="fechamentos-list" id="fechamentos-list"></div>
+    <!-- PANEL 5 — FECHAMENTOS -->
+    <div class="panel hidden" id="p5">
+      <div class="sec">
+        <div class="sec-title">Calendário de Fechamentos</div>
+        <div class="fech-grid" id="fechs"></div>
       </div>
     </div>
 
-    <!-- TAB 6 — Análises -->
-    <div id="tab-6" class="hidden">
-      <div id="analises-wrap"></div>
+    <!-- PANEL 6 — ANÁLISES -->
+    <div class="panel hidden" id="p6">
+      <div id="analises"></div>
     </div>
 
-    <div class="ts-bar" id="ts-bar"></div>
+    <div class="foot" id="foot"></div>
   </div><!-- /app -->
-
-</div><!-- /page -->
+</div>
 
 <script>
-const JSON_URL = 'https://raw.githubusercontent.com/petterson-bot/sda2026-tv/main/dados-dashboard.json';
+const URL_JSON = 'https://raw.githubusercontent.com/petterson-bot/sda2026-tv/main/dados-dashboard.json';
 let D = null;
-let activeTab = 0;
 
-// ─── FETCH ─────────────────────────────────────────────────
-async function fetchData(){
-  try {
-    const r = await fetch(JSON_URL + '?t=' + Date.now());
+/* ── FETCH ─────────────────────────────────────── */
+async function load(){
+  try{
+    const r = await fetch(URL_JSON+'?_='+Date.now());
     D = await r.json();
-    document.getElementById('loading').classList.add('hidden');
-    document.getElementById('app').classList.remove('hidden');
-    renderAll();
-  } catch(e){
+    show();
+    render();
+  }catch(e){
     document.getElementById('loading').innerHTML =
-      '<p style="color:#ef4444">Erro ao carregar dados. Verifique a conexão.</p>' +
-      '<p style="font-size:11px;color:#64748b;margin-top:8px">' + e.message + '</p>';
+      `<p style="color:var(--red);font-size:13px">Erro ao carregar dados</p>
+       <p style="color:var(--dim);font-size:11px;margin-top:6px">${e.message}</p>`;
   }
 }
 
-function renderAll(){
-  renderHeader();
-  renderKPI();
-  renderProgress();
-  renderMix();
-  renderProxFechamentos();
-  renderLotes2026();
-  renderLotes2025();
-  renderComparativo();
-  renderSemanas();
-  renderFechamentos();
-  renderAnalises();
+function show(){
+  document.getElementById('loading').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
 }
 
-// ─── HEADER ────────────────────────────────────────────────
-function renderHeader(){
-  const r = D.resumo;
-  document.getElementById('ts-badge').textContent = 'Atualizado: ' + (D.ts || '–');
-  document.getElementById('ts-bar').textContent = '⏱ Última atualização: ' + (D.ts || '–');
-  document.getElementById('subheader').textContent =
-    'Teatro Bradesco · 24 a 26/04/2026 · ' + (r.diasRestantes || 0) + ' dias para o encerramento';
+function render(){
+  const r = D.resumo||{};
+  // header
+  document.getElementById('hdr-sub').textContent =
+    `Teatro Bradesco · 24–26/04/2026 · ${r.diasRestantes||0} dias para encerramento`;
+  document.getElementById('hdr-ts').textContent = 'Atualizado: '+(D.ts||'–');
+  document.getElementById('foot').textContent = '⏱ '+( D.ts||'–');
+
+  rKPI(r); rProg(r); rMix(); rProxFech(); rLotes26(); rLotes25(); rCmp(r); rSem(); rFechs(); rAnalises();
 }
 
-// ─── KPI CARDS ─────────────────────────────────────────────
-function renderKPI(){
-  const r = D.resumo;
-  const cards = [
-    { label:'Vendidos 2026', val: r.vendidos2026, sub: 'de ' + r.meta + ' meta', cor:'#6366f1', tag: r.pct + '%', tagCor:'#6366f122', tagText:'#a5b4fc' },
-    { label:'Faltam', val: r.faltam, sub: r.mediaDia + ' por dia', cor:'#ec4899', tag:'⚡ urgente', tagCor:'#ec489922', tagText:'#f9a8d4' },
-    { label:'Receita 2026', val: 'R$\u00A0' + fmt(r.receita2026), sub: 'vs R$\u00A0' + fmt(r.receita2025) + ' em 2025', cor:'#10b981', tag:diffPct(r.receita2026,r.receita2025), tagCor:'#10b98122', tagText:'#6ee7b7' },
-    { label:'Vendidos 2025', val: r.total2025, sub: 'total final 2025', cor:'#f59e0b', tag: diffPct(r.vendidos2026,r.total2025), tagCor:'#f59e0b22', tagText:'#fcd34d' },
-    { label:'Dias Restantes', val: r.diasRestantes, sub:'até 22/04 (encerramento)', cor:'#ef4444', tag:'🗓', tagCor:'#ef444422', tagText:'#fca5a5' },
-    { label:'Média Necessária', val: r.mediaDia + '/dia', sub:'para bater a meta', cor:'#8b5cf6', tag:'📈', tagCor:'#8b5cf622', tagText:'#c4b5fd' },
+/* ── KPI ── */
+function rKPI(r){
+  const items=[
+    {l:'Vendidos 2026',  v:r.vendidos2026,   s:'de '+r.meta+' meta',       c:'var(--purple)', tag:r.pct+'%',              tc:'#6366f122',tagc:'#a5b4fc'},
+    {l:'Faltam',         v:r.faltam,          s:r.mediaDia+'/dia necessário',c:'var(--pink)',  tag:'⚡',                   tc:'#ec489922',tagc:'#f9a8d4'},
+    {l:'Receita 2026',   v:'R$\u00A0'+fmt(r.receita2026), s:'vs R$\u00A0'+fmt(r.receita2025)+' (2025)', c:'var(--green)', tag:dp(r.receita2026,r.receita2025), tc:'#10b98122',tagc:'#6ee7b7'},
+    {l:'Total 2025',     v:r.total2025,       s:'resultado final',           c:'var(--yellow)', tag:dp(r.vendidos2026,r.total2025),tc:'#f59e0b22',tagc:'#fcd34d'},
+    {l:'Dias Restantes', v:r.diasRestantes,   s:'até 22/04 encerramento',    c:'var(--red)',   tag:'🗓',                   tc:'#ef444422',tagc:'#fca5a5'},
+    {l:'Média Necessária',v:r.mediaDia+'/dia',s:'para bater a meta',         c:'var(--violet)',tag:'📈',                   tc:'#8b5cf622',tagc:'#c4b5fd'},
   ];
-  const wrap = document.getElementById('kpi-cards');
-  wrap.innerHTML = cards.map(c => `
-    <div class="card accent" style="border-color:${c.cor}44">
-      <div class="label">${c.label}</div>
-      <div class="val" style="color:${c.cor}">${c.val}</div>
-      <div class="sub">${c.sub}</div>
-      <div class="tag" style="background:${c.tagCor};color:${c.tagText}">${c.tag}</div>
+  document.getElementById('kpis').innerHTML = items.map(k=>`
+    <div class="kpi" style="border-color:${k.c}33">
+      <div class="kpi-label">${k.l}</div>
+      <div class="kpi-val" style="color:${k.c}">${k.v}</div>
+      <div class="kpi-sub">${k.s}</div>
+      <div class="kpi-tag" style="background:${k.tc};color:${k.tagc}">${k.tag}</div>
     </div>`).join('');
 }
 
-// ─── PROGRESSO ─────────────────────────────────────────────
-function renderProgress(){
-  const r = D.resumo;
-  const pct = Math.min(r.pct, 100);
-  document.getElementById('prog-label').textContent = r.vendidos2026 + ' ingressos vendidos';
-  document.getElementById('prog-sub').textContent = 'Meta: ' + r.meta + ' ingressos · SDA 2026';
-  document.getElementById('prog-pct').textContent = pct + '%';
-  document.getElementById('prog-bar').style.width = pct + '%';
-  document.getElementById('prog-left').textContent = pct + '% atingido';
-  document.getElementById('prog-right').textContent = r.faltam + ' ingressos faltam em ' + r.diasRestantes + ' dias';
+/* ── PROGRESSO ── */
+function rProg(r){
+  const p=Math.min(r.pct||0,100);
+  document.getElementById('prog-h').textContent = (r.vendidos2026||0)+' ingressos vendidos';
+  document.getElementById('prog-sub').textContent = 'Meta: '+(r.meta||0)+' · SDA 2026';
+  document.getElementById('prog-pct').textContent = p+'%';
+  document.getElementById('prog-bar').style.width = p+'%';
+  document.getElementById('prog-l').textContent = p+'% atingido';
+  document.getElementById('prog-r').textContent = (r.faltam||0)+' faltam em '+(r.diasRestantes||0)+' dias';
 }
 
-// ─── MIX ───────────────────────────────────────────────────
-function renderMix(){
-  const ref25 = D.mix2025 || [{cat:'Experience',pct:66,cor:'#34d399'},{cat:'VIP',pct:28,cor:'#60a5fa'},{cat:'Platinum',pct:6,cor:'#a78bfa'}];
-  const mix26 = D.mix2026 || [];
-  const findPct = (arr, cat) => { const f = arr.find(x => x.cat.toLowerCase() === cat.toLowerCase()); return f ? f.pct : 0; };
-  function mkMix(arr, compare){
-    return arr.map(m => {
-      const diff = compare ? (m.pct - findPct(compare, m.cat)) : 0;
-      const diffTxt = diff === 0 ? '—' : (diff > 0 ? '+' + diff + '%' : diff + '%');
-      const diffCol = diff > 0 ? '#10b981' : diff < 0 ? '#ef4444' : '#64748b';
-      return `<div class="mix-card" style="border-bottom:3px solid ${m.cor}">
+/* ── MIX ── */
+function rMix(){
+  const ref25 = D.mix2025||[{cat:'Experience',pct:66,cor:'#34d399'},{cat:'VIP',pct:28,cor:'#60a5fa'},{cat:'Platinum',pct:6,cor:'#a78bfa'}];
+  const m26 = D.mix2026||[];
+  const find=(arr,cat)=>{const f=arr.find(x=>x.cat.toLowerCase()===cat.toLowerCase());return f?f.pct:0;};
+  function mkMix(arr,cmp){
+    return arr.map(m=>{
+      const d=cmp?(m.pct-find(cmp,m.cat)):0;
+      const dc=d>0?'var(--green)':d<0?'var(--red)':'var(--dim)';
+      const dt=d===0?'—':(d>0?'+':'')+d+'%';
+      return `<div class="mix-c" style="border-bottom-color:${m.cor}">
         <div class="mix-pct" style="color:${m.cor}">${m.pct}%</div>
-        <div class="mix-label">${m.cat}</div>
-        ${compare ? `<div class="mix-diff" style="color:${diffCol}">${diffTxt}</div>` : ''}
+        <div class="mix-cat">${m.cat}</div>
+        ${cmp?`<div class="mix-diff" style="color:${dc}">${dt}</div>`:''}
       </div>`;
     }).join('');
   }
-  document.getElementById('mix-2026').innerHTML = mkMix(mix26, ref25);
-  document.getElementById('mix-2025').innerHTML = mkMix(ref25, null);
+  document.getElementById('mix26').innerHTML = mkMix(m26,ref25);
+  document.getElementById('mix25').innerHTML = mkMix(ref25,null);
 }
 
-// ─── PRÓXIMOS FECHAMENTOS (tab 0) ──────────────────────────
-function renderProxFechamentos(){
-  const list = (D.fechamentos || []).filter(f => f.status !== 'ENCERRADO').slice(0,4);
-  document.getElementById('prox-fechamentos').innerHTML = list.length ? list.map(f => mkFechItem(f)).join('') :
-    '<div style="color:#64748b;font-size:12px;padding:12px">✅ Todos os fechamentos encerrados</div>';
+/* ── PROX FECH ── */
+function rProxFech(){
+  const list=(D.fechamentos||[]).filter(f=>f.status!=='ENCERRADO').slice(0,4);
+  document.getElementById('prox-fech').innerHTML = list.length
+    ? list.map(f=>mkFech(f)).join('')
+    : '<p style="color:var(--dim);font-size:12px;padding:10px">✅ Todos os fechamentos encerrados</p>';
 }
 
-// ─── LOTES 2026 ────────────────────────────────────────────
-function renderLotes2026(){
-  const wrap = document.getElementById('lotes-2026');
-  wrap.innerHTML = (D.lotes2026 || []).map(l => {
-    const qtd = l.qtd !== null ? l.qtd : '—';
-    const metaPct = l.meta && l.qtd ? Math.min(Math.round((l.qtd / l.meta) * 100), 100) : 0;
-    return `<div class="lote-card ${l.encerrado ? 'encerrado' : ''}" style="border-left-color:${l.cor}">
-      <div class="lote-badge ${l.encerrado ? 'badge-enc' : 'badge-ativo'}">${l.encerrado ? '✓ Encerrado' : '● Ativo'}</div>
+/* ── LOTES 2026 ── */
+function rLotes26(){
+  document.getElementById('lotes26').innerHTML=(D.lotes2026||[]).map(l=>{
+    const q=l.qtd!==null?l.qtd:'—';
+    const p=l.meta&&l.qtd?Math.min(Math.round(l.qtd/l.meta*100),100):0;
+    return `<div class="lote-card ${l.encerrado?'closed':''}" style="border-left-color:${l.cor}">
+      <div class="lote-badge-abs ${l.encerrado?'b-closed':'b-open'}">${l.encerrado?'✓ Enc.':'● Ativo'}</div>
       <div class="lote-name">${l.fase}</div>
-      <div class="lote-periodo">${l.periodo}</div>
-      <div class="lote-qtd" style="color:${l.cor}">${qtd}</div>
-      <div class="lote-receita">${l.receita > 0 ? 'R$\u00A0' + fmt(l.receita) : ''}</div>
-      ${l.meta ? `<div style="font-size:10px;color:#64748b;margin-top:6px">Meta: ${l.meta}</div>
-      <div class="lote-meta-bar"><div class="lote-meta-fill" style="width:${metaPct}%;background:${l.cor}"></div></div>` : ''}
+      <div class="lote-period">${l.periodo}</div>
+      <div class="lote-num" style="color:${l.cor}">${q}</div>
+      <div class="lote-rev">${l.receita>0?'R$\u00A0'+fmt(l.receita):''}</div>
+      ${l.meta?`<div class="meta-txt">Meta: ${l.meta}</div>
+      <div class="meta-bar"><div class="meta-fill" style="width:${p}%;background:${l.cor}"></div></div>`:''}
     </div>`;
   }).join('');
 }
 
-// ─── LOTES 2025 ────────────────────────────────────────────
-function renderLotes2025(){
-  const wrap = document.getElementById('lotes-2025');
-  const total = (D.lotes2025 || []).reduce((a, l) => a + (l.qtd || 0), 0);
-  wrap.innerHTML = (D.lotes2025 || []).map(l => {
-    const pct = total > 0 ? Math.round((l.qtd / total) * 100) : 0;
-    return `<div class="lote-card encerrado" style="border-left-color:${l.cor}">
-      <div class="lote-badge badge-enc">✓ 2025</div>
+/* ── LOTES 2025 ── */
+function rLotes25(){
+  const total=(D.lotes2025||[]).reduce((a,l)=>a+(l.qtd||0),0);
+  document.getElementById('lotes25').innerHTML=(D.lotes2025||[]).map(l=>{
+    const p=total>0?Math.round(l.qtd/total*100):0;
+    return `<div class="lote-card closed" style="border-left-color:${l.cor}">
+      <div class="lote-badge-abs b-closed">✓ 2025</div>
       <div class="lote-name">${l.fase}</div>
-      <div class="lote-periodo">${l.periodo}</div>
-      <div class="lote-qtd" style="color:${l.cor}">${l.qtd || 0}</div>
-      <div class="lote-receita">${l.receita > 0 ? 'R$\u00A0' + fmt(l.receita) : ''}</div>
-      <div style="font-size:10px;color:#64748b;margin-top:6px">${pct}% do total</div>
-      <div class="lote-meta-bar"><div class="lote-meta-fill" style="width:${pct}%;background:${l.cor}"></div></div>
+      <div class="lote-period">${l.periodo}</div>
+      <div class="lote-num" style="color:${l.cor}">${l.qtd||0}</div>
+      <div class="lote-rev">${l.receita>0?'R$\u00A0'+fmt(l.receita):''}</div>
+      <div class="meta-txt">${p}% do total</div>
+      <div class="meta-bar"><div class="meta-fill" style="width:${p}%;background:${l.cor}"></div></div>
     </div>`;
   }).join('');
 }
 
-// ─── COMPARATIVO ───────────────────────────────────────────
-function renderComparativo(){
-  const r = D.resumo;
-  const c25 = D.corte2025 || {};
-  const c26 = D.corte2026 || {};
-  const deltaQtd = r.vendidos2026 - (c25.qtd || r.total2025);
-  const deltaRec = r.receita2026 - (c25.receita || r.receita2025);
-  document.getElementById('compare-cards').innerHTML = `
-    <div class="compare-card" style="border:2px solid #334155">
-      <div class="compare-year" style="color:#64748b">SDA 2025</div>
-      <div class="compare-num" style="color:#f59e0b">${c25.qtd || r.total2025}</div>
-      <div class="compare-label">ingressos vendidos (total)</div>
-      <div class="compare-sub">R$\u00A0${fmt(c25.receita || r.receita2025)}</div>
+/* ── COMPARATIVO ── */
+function rCmp(r){
+  const c25=D.corte2025||{};
+  document.getElementById('cmp').innerHTML=`
+    <div class="cmp-card" style="border:1px solid #ffffff0d">
+      <div class="cmp-year" style="color:var(--yellow)">SDA 2025</div>
+      <div class="cmp-num" style="color:var(--yellow)">${c25.qtd||r.total2025||0}</div>
+      <div class="cmp-label">ingressos (total final)</div>
+      <div class="cmp-rev">R$\u00A0${fmt(c25.receita||r.receita2025||0)}</div>
     </div>
-    <div class="compare-card" style="border:2px solid #6366f1">
-      <div class="compare-year" style="color:#6366f1">SDA 2026</div>
-      <div class="compare-num" style="color:#6366f1">${r.vendidos2026}</div>
-      <div class="compare-label">ingressos vendidos (hoje)</div>
-      <div class="compare-sub">R$\u00A0${fmt(r.receita2026)}</div>
+    <div class="cmp-card" style="border:1px solid var(--purple)44">
+      <div class="cmp-year" style="color:var(--purple)">SDA 2026</div>
+      <div class="cmp-num" style="color:var(--purple)">${r.vendidos2026||0}</div>
+      <div class="cmp-label">ingressos (hoje)</div>
+      <div class="cmp-rev">R$\u00A0${fmt(r.receita2026||0)}</div>
     </div>`;
-  const projecoes = D.analises && D.analises.projecao ? D.analises.projecao : [];
-  document.getElementById('projecao-cards').innerHTML = projecoes.map((p, i) => `
-    <div class="analise-item" style="margin-bottom:10px">
-      <div class="analise-n" style="color:#8b5cf6">${i + 1}.</div>
-      <div class="analise-text">${p}</div>
+  const pj=(D.analises||{}).projecao||[];
+  document.getElementById('proj').innerHTML=pj.map((p,i)=>`
+    <div class="analise-row" style="margin-bottom:12px">
+      <div class="analise-n" style="color:var(--violet)">${i+1}.</div>
+      <div class="analise-txt">${p}</div>
     </div>`).join('');
 }
 
-// ─── SEMANAS ───────────────────────────────────────────────
-function renderSemanas(){
-  const sems = D.semanas || [];
-  // Desktop table
-  document.getElementById('sem-tbody').innerHTML = sems.map(s => {
-    const cls = s.enc ? 'enc-row' : s.ativo ? 'ativo-row' : '';
-    const realTxt = s.real !== null ? s.real : (s.enc ? '<span style="color:#ef4444">0</span>' : '<span style="color:#64748b">—</span>');
-    const pct = s.real !== null && s.meta > 0 ? Math.min(Math.round((s.real / s.meta) * 100), 100) : 0;
-    const ok = s.real !== null ? (s.real >= s.meta ? '✓' : '✗') : '';
-    const okCol = s.real !== null ? (s.real >= s.meta ? 'sem-check' : 'sem-cross') : '';
+/* ── SEMANAS ── */
+function rSem(){
+  const sems=D.semanas||[];
+  // desktop
+  document.getElementById('sem-tbody').innerHTML=sems.map(s=>{
+    const cls=s.enc?'tr-done':s.ativo?'tr-active':'';
+    const rv=s.real!==null?s.real:'<span style="color:var(--dim)">—</span>';
+    const p=s.real!==null&&s.meta>0?Math.min(Math.round(s.real/s.meta*100),100):0;
+    const ok=s.real!==null?(s.real>=s.meta?`<span style="color:var(--green)">✓</span>`:`<span style="color:var(--red)">✗</span>`):'';
     return `<tr class="${cls}">
-      <td><div class="sem-badge" style="background:${s.cor}">${s.n}</div></td>
-      <td style="font-size:11px;color:#94a3b8">${s.s}</td>
-      <td style="font-size:12px;color:#f8fafc;font-weight:600">${s.lote}</td>
-      <td style="font-weight:700;color:#f59e0b">${s.meta}</td>
-      <td style="font-weight:800">${realTxt}</td>
-      <td><div class="sem-bar-wrap"><div class="sem-bar-fill" style="width:${pct}%;background:${s.cor}"></div></div></td>
-      <td style="font-weight:800;color:#6366f1">${s.acum} <span class="${okCol}" style="font-size:12px">${ok}</span></td>
+      <td><div class="sem-num" style="background:${s.cor}">${s.n}</div></td>
+      <td style="color:var(--muted);font-size:11px;white-space:nowrap">${s.s}</td>
+      <td style="font-weight:700">${s.lote}</td>
+      <td style="color:var(--yellow);font-weight:800">${s.meta}</td>
+      <td style="font-weight:900">${rv}</td>
+      <td><div class="bar-wrap"><div class="bar-fill" style="width:${p}%;background:${s.cor}"></div></div></td>
+      <td style="color:var(--purple);font-weight:900">${s.acum} ${ok}</td>
     </tr>`;
   }).join('');
-  // Mobile cards
-  document.getElementById('sem-mobile').innerHTML = sems.map(s => {
-    const realTxt = s.real !== null ? s.real : '—';
-    const pct = s.real !== null && s.meta > 0 ? Math.min(Math.round((s.real / s.meta) * 100), 100) : 0;
-    return `<div class="sem-card ${s.enc ? '' : s.ativo ? '' : ''}" style="border-left-color:${s.cor};opacity:${s.enc ? .5 : 1}">
-      <div class="sem-card-header">
+  // mobile
+  document.getElementById('sem-mob').innerHTML=sems.map(s=>{
+    const rv=s.real!==null?s.real:'—';
+    const p=s.real!==null&&s.meta>0?Math.min(Math.round(s.real/s.meta*100),100):0;
+    return `<div class="sem-mob-card" style="border-left-color:${s.cor};opacity:${s.enc?.55:1}">
+      <div class="sem-mob-head">
         <div style="display:flex;align-items:center;gap:8px">
-          <div class="sem-badge" style="background:${s.cor}">${s.n}</div>
-          <div style="font-size:12px;font-weight:800;color:#f8fafc">${s.lote}</div>
+          <div class="sem-num" style="background:${s.cor}">${s.n}</div>
+          <div>
+            <div style="font-size:12px;font-weight:800">${s.lote}</div>
+            <div style="font-size:10px;color:var(--dim)">${s.s}</div>
+          </div>
         </div>
-        <div style="font-size:10px;color:#94a3b8">${s.s}</div>
+        ${s.ativo?`<span style="background:#6366f122;color:#a5b4fc;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px">● Ativo</span>`:''}
       </div>
-      <div style="display:flex;gap:16px;margin-bottom:8px;flex-wrap:wrap">
-        <div><div style="font-size:9px;color:#64748b;text-transform:uppercase">Meta</div><div style="font-size:18px;font-weight:900;color:#f59e0b">${s.meta}</div></div>
-        <div><div style="font-size:9px;color:#64748b;text-transform:uppercase">Real</div><div style="font-size:18px;font-weight:900;color:${s.cor}">${realTxt}</div></div>
-        <div><div style="font-size:9px;color:#64748b;text-transform:uppercase">Acumulado</div><div style="font-size:18px;font-weight:900;color:#6366f1">${s.acum}</div></div>
+      <div class="sem-mob-nums">
+        <div class="sem-mob-num-block">
+          <div class="sem-mob-num-label">Meta</div>
+          <div class="sem-mob-num-val" style="color:var(--yellow)">${s.meta}</div>
+        </div>
+        <div class="sem-mob-num-block">
+          <div class="sem-mob-num-label">Real</div>
+          <div class="sem-mob-num-val" style="color:${s.cor}">${rv}</div>
+        </div>
+        <div class="sem-mob-num-block">
+          <div class="sem-mob-num-label">Acum.</div>
+          <div class="sem-mob-num-val" style="color:var(--purple)">${s.acum}</div>
+        </div>
       </div>
-      <div class="sem-bar-wrap" style="height:8px"><div class="sem-bar-fill" style="width:${pct}%;background:${s.cor};height:8px"></div></div>
-      <div style="font-size:10px;color:#64748b;margin-top:4px">${pct}% da meta semanal</div>
+      <div class="bar-wrap" style="height:8px">
+        <div class="bar-fill" style="width:${p}%;background:${s.cor};height:8px"></div>
+      </div>
+      <div style="font-size:10px;color:var(--dim);margin-top:4px">${p}% da meta semanal</div>
     </div>`;
   }).join('');
 }
 
-// ─── FECHAMENTOS ───────────────────────────────────────────
-function renderFechamentos(){
-  document.getElementById('fechamentos-list').innerHTML =
-    (D.fechamentos || []).map(f => mkFechItem(f)).join('');
+/* ── FECHAMENTOS ── */
+function rFechs(){
+  document.getElementById('fechs').innerHTML=(D.fechamentos||[]).map(f=>mkFech(f)).join('');
 }
 
-function mkFechItem(f){
-  const statusClass = f.status === 'ENCERRADO' ? 'status-enc' : f.status === 'ATIVO' ? 'status-ativo' : 'status-prox';
-  const statusEmoji = f.status === 'ENCERRADO' ? '✓ Encerrado' : f.status === 'ATIVO' ? '● Ativo agora' : '◎ Próximo';
-  return `<div class="fech-item">
+function mkFech(f){
+  const sc=f.status==='ENCERRADO'?'st-done':f.status==='ATIVO'?'st-live':'st-next';
+  const sl=f.status==='ENCERRADO'?'✓ Encerrado':f.status==='ATIVO'?'● Ativo':'◎ Próximo';
+  return `<div class="fech-card">
     <div class="fech-dot" style="background:${f.cor}"></div>
-    <div class="fech-content">
+    <div class="fech-body">
       <div class="fech-lote">${f.lote}</div>
       <div class="fech-tier">${f.tier}</div>
       <div class="fech-data">⏰ ${f.data}</div>
     </div>
-    <div class="fech-status ${statusClass}">${statusEmoji}</div>
+    <div class="fech-st ${sc}">${sl}</div>
   </div>`;
 }
 
-// ─── ANÁLISES ──────────────────────────────────────────────
-function renderAnalises(){
-  const an = D.analises || {};
-  const secs = [
-    { tipo:'✅ Acertos', items: an.acertos || [], cor:'#10b981', bg:'#10b98111' },
-    { tipo:'⚠️ Pontos de Atenção', items: an.atencao || [], cor:'#f59e0b', bg:'#f59e0b11' },
-    { tipo:'🎯 Ações Recomendadas', items: an.acoes || [], cor:'#6366f1', bg:'#6366f111' },
+/* ── ANÁLISES ── */
+function rAnalises(){
+  const an=(D.analises||{});
+  const secs=[
+    {t:'✅ Acertos',          it:an.acertos||[],  c:'var(--green)',  bg:'#10b98110'},
+    {t:'⚠️ Pontos de Atenção',it:an.atencao||[],  c:'var(--yellow)', bg:'#f59e0b10'},
+    {t:'🎯 Ações Recomendadas',it:an.acoes||[],   c:'var(--purple)', bg:'#6366f110'},
   ];
-  document.getElementById('analises-wrap').innerHTML = secs.map(s => `
-    <div class="analise-section" style="background:${s.bg};border:1px solid ${s.cor}33">
-      <div class="analise-title" style="color:${s.cor}">${s.tipo}</div>
-      ${s.items.map((item, i) => `
-        <div class="analise-item">
-          <div class="analise-n" style="color:${s.cor}">${i + 1}.</div>
-          <div class="analise-text">${item}</div>
+  document.getElementById('analises').innerHTML=secs.map(s=>`
+    <div class="analise-block" style="background:${s.bg};border:1px solid ${s.c}22">
+      <div class="analise-head" style="color:${s.c}">${s.t}</div>
+      ${s.it.map((x,i)=>`
+        <div class="analise-row">
+          <div class="analise-n" style="color:${s.c}">${i+1}.</div>
+          <div class="analise-txt">${x}</div>
         </div>`).join('')}
     </div>`).join('');
 }
 
-// ─── TABS ──────────────────────────────────────────────────
-function showTab(i){
-  activeTab = i;
-  document.querySelectorAll('[id^=tab-]').forEach(el => el.classList.add('hidden'));
-  document.getElementById('tab-' + i).classList.remove('hidden');
-  document.querySelectorAll('.tab').forEach((t, ti) => t.classList.toggle('active', ti === i));
+/* ── TABS ── */
+function tab(i){
+  document.querySelectorAll('.panel').forEach((p,pi)=>p.classList.toggle('on',pi===i));
+  document.querySelectorAll('.panel').forEach((p,pi)=>p.classList.toggle('hidden',pi!==i));
+  document.querySelectorAll('.tab-btn').forEach((b,bi)=>b.classList.toggle('on',bi===i));
 }
 
-// ─── UTILS ─────────────────────────────────────────────────
+/* ── UTILS ── */
 function fmt(v){
-  if(typeof v !== 'number') return '0,00';
-  return v.toLocaleString('pt-BR', {minimumFractionDigits:0, maximumFractionDigits:0});
+  if(typeof v!=='number')return '0';
+  return v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});
 }
-function diffPct(a, b){
-  if(!b) return '—';
-  const d = ((a - b) / b * 100).toFixed(1);
-  return (d >= 0 ? '+' : '') + d + '%';
+function dp(a,b){
+  if(!b)return '—';
+  const d=((a-b)/b*100).toFixed(1);
+  return (d>=0?'+':'')+d+'%';
 }
 
-// ─── INIT ──────────────────────────────────────────────────
-fetchData();
-setInterval(fetchData, 60000); // refresh a cada 60s
+/* ── INIT ── */
+load();
+setInterval(load,60000);
 </script>
 </body>
 </html>
