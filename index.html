@@ -172,7 +172,14 @@ function render(d) {
   document.getElementById('sem-label').textContent = d.semVigente.semana;
   var semEl = document.getElementById('sem-rank');
   semEl.innerHTML = '';
-  d.semVigente.rank.forEach(function(v,i){ semEl.appendChild(renderVcard(v,i)); });
+  // Reordena por qtd; desempate por maior valor (usando rankGeral como referencia)
+  var valorMap = {};
+  (d.rankGeral || []).forEach(function(v) { valorMap[v.nome] = v.valor || 0; });
+  var semRank = d.semVigente.rank.slice().sort(function(a,b){
+    if (b.qtd !== a.qtd) return b.qtd - a.qtd;
+    return (valorMap[b.nome]||0) - (valorMap[a.nome]||0);
+  });
+  semRank.forEach(function(v,i){ semEl.appendChild(renderVcard(v,i)); });
   document.getElementById('lote-nome').textContent = d.loteVigente.nome || '—';
   var loteEl = document.getElementById('lote-cards');
   loteEl.innerHTML = '';
@@ -190,7 +197,11 @@ function render(d) {
   });
   var geralEl = document.getElementById('geral-rank');
   geralEl.innerHTML = '';
-  d.rankGeral.forEach(function(v,i){ geralEl.appendChild(renderVcard(v,i)); });
+  var geralRank = d.rankGeral.slice().sort(function(a,b){
+    if (b.qtd !== a.qtd) return b.qtd - a.qtd;
+    return (b.valor||0) - (a.valor||0);
+  });
+  geralRank.forEach(function(v,i){ geralEl.appendChild(renderVcard(v,i)); });
   var tk = ['META: '+tot+' / '+meta+'  ·  '+pct.toFixed(1)+'% atingido  ·  FALTAM '+falt+' ingressos'];
   d.rankGeral.forEach(function(v){ tk.push(v.nome.toUpperCase()+': '+v.qtd+' ingressos'); });
   document.getElementById('tkc').textContent = tk.join('     ·     ');
