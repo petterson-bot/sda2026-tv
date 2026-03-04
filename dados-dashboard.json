@@ -1,0 +1,459 @@
+{
+  "ts": "04/03/2026 11:53:07",
+  "resumo": {
+    "vendidos2026": 354,
+    "receita2026": 388413.38,
+    "faltam": 917,
+    "meta": 1271,
+    "pct": 28,
+    "mediaDia": 18.7,
+    "diasRestantes": 49,
+    "total2025": 1177,
+    "receita2025": 1469861.6799999997
+  },
+  "lotes2026": [
+    {
+      "fase": "Pré-venda",
+      "periodo": "Nov/2025",
+      "qtd": 190,
+      "receita": 183512.08000000002,
+      "cor": "#6366f1",
+      "encerrado": true,
+      "meta": null
+    },
+    {
+      "fase": "Pré-venda Relâmpago",
+      "periodo": "Nov/2025",
+      "qtd": null,
+      "receita": 0,
+      "cor": "#8b5cf6",
+      "encerrado": true,
+      "meta": null
+    },
+    {
+      "fase": "Pré-venda Reabertura",
+      "periodo": "Dez/2025",
+      "qtd": null,
+      "receita": 0,
+      "cor": "#06b6d4",
+      "encerrado": true,
+      "meta": null
+    },
+    {
+      "fase": "1º Lote",
+      "periodo": "Jan/2026",
+      "qtd": 62,
+      "receita": 68631.7,
+      "cor": "#10b981",
+      "encerrado": true,
+      "meta": null
+    },
+    {
+      "fase": "2º Lote",
+      "periodo": "Fev/2026",
+      "qtd": 91,
+      "receita": 117155.59999999999,
+      "cor": "#f59e0b",
+      "encerrado": true,
+      "meta": null
+    },
+    {
+      "fase": "2º Lote Reabertura",
+      "periodo": "Fev-Mar/2026",
+      "qtd": null,
+      "receita": 0,
+      "cor": "#f97316",
+      "encerrado": true,
+      "meta": null
+    },
+    {
+      "fase": "3º Lote",
+      "periodo": "05/03→16/03",
+      "qtd": null,
+      "receita": 0,
+      "cor": "#ec4899",
+      "encerrado": false,
+      "meta": 180
+    },
+    {
+      "fase": "3º Lote Reab.",
+      "periodo": "16/03",
+      "qtd": null,
+      "receita": 0,
+      "cor": "#be185d",
+      "encerrado": false,
+      "meta": 120
+    },
+    {
+      "fase": "4º Lote",
+      "periodo": "26/03→07/04",
+      "qtd": null,
+      "receita": 0,
+      "cor": "#9f1239",
+      "encerrado": false,
+      "meta": 200
+    },
+    {
+      "fase": "Último Lote",
+      "periodo": "07/04→19/04",
+      "qtd": null,
+      "receita": 0,
+      "cor": "#7f1d1d",
+      "encerrado": false,
+      "meta": 280
+    },
+    {
+      "fase": "Sprint Final",
+      "periodo": "19/04→22/04",
+      "qtd": null,
+      "receita": 0,
+      "cor": "#450a0a",
+      "encerrado": false,
+      "meta": 135
+    }
+  ],
+  "lotes2025": [
+    {
+      "fase": "Pré-venda Teatro",
+      "periodo": "Abr/2024",
+      "qtd": 43,
+      "receita": 37868,
+      "cor": "#6366f1"
+    },
+    {
+      "fase": "Mapa da Escala",
+      "periodo": "Jun-Ago/2024",
+      "qtd": 10,
+      "receita": 14270,
+      "cor": "#8b5cf6"
+    },
+    {
+      "fase": "Outros (out-dez/2024)",
+      "periodo": "Out-Dez/2024",
+      "qtd": 12,
+      "receita": 8019.5,
+      "cor": "#a78bfa"
+    },
+    {
+      "fase": "Pré-venda Lista Espera",
+      "periodo": "Dez/2024",
+      "qtd": 17,
+      "receita": 14649,
+      "cor": "#a78bfa"
+    },
+    {
+      "fase": "Pré-venda Relâmpago",
+      "periodo": "17/12/2024",
+      "qtd": 84,
+      "receita": 74868,
+      "cor": "#06b6d4"
+    },
+    {
+      "fase": "Pré-venda Reabertura",
+      "periodo": "19-20/12/2024",
+      "qtd": 32,
+      "receita": 35204,
+      "cor": "#0ea5e9"
+    },
+    {
+      "fase": "1º Lote",
+      "periodo": "Jan/2025",
+      "qtd": 110,
+      "receita": 120654.95,
+      "cor": "#10b981"
+    },
+    {
+      "fase": "2º Lote",
+      "periodo": "Fev/2025",
+      "qtd": 108,
+      "receita": 137097.25,
+      "cor": "#f59e0b"
+    },
+    {
+      "fase": "3º Lote",
+      "periodo": "Mar/2025",
+      "qtd": 206,
+      "receita": 263482.15,
+      "cor": "#f97316"
+    },
+    {
+      "fase": "3º Lote Reab.",
+      "periodo": "Mar/2025",
+      "qtd": 126,
+      "receita": 136618.88,
+      "cor": "#ef4444"
+    },
+    {
+      "fase": "4º Lote",
+      "periodo": "Abr/2025",
+      "qtd": 105,
+      "receita": 120742.65000000001,
+      "cor": "#ec4899"
+    },
+    {
+      "fase": "Último Lote",
+      "periodo": "Abr/2025",
+      "qtd": 199,
+      "receita": 311056.5,
+      "cor": "#be185d"
+    },
+    {
+      "fase": "Sprint Final",
+      "periodo": "Até 09/Abr/2025",
+      "qtd": 0,
+      "receita": 0,
+      "cor": "#9f1239"
+    }
+  ],
+  "corte2025": {
+    "qtd": 1177,
+    "receita": 1469861.6799999997,
+    "data": "Total acumulado",
+    "dias_antes": "-"
+  },
+  "corte2026": {
+    "qtd": 354,
+    "receita": 388413.38,
+    "data": "04/03/2026",
+    "dias_antes": 51
+  },
+  "mix2025": [
+    {
+      "cat": "Experience",
+      "pct": 66,
+      "cor": "#34d399"
+    },
+    {
+      "cat": "VIP",
+      "pct": 28,
+      "cor": "#60a5fa"
+    },
+    {
+      "cat": "Platinum",
+      "pct": 6,
+      "cor": "#a78bfa"
+    }
+  ],
+  "mix2026": [
+    {
+      "cat": "Experience",
+      "pct": 0,
+      "cor": "#34d399"
+    },
+    {
+      "cat": "VIP",
+      "pct": 0,
+      "cor": "#60a5fa"
+    },
+    {
+      "cat": "Platinum",
+      "pct": 0,
+      "cor": "#a78bfa"
+    }
+  ],
+  "semanas": [
+    {
+      "n": 1,
+      "s": "24/02→05/03",
+      "lote": "2º Lote Reabertura",
+      "meta": 30,
+      "real": 0,
+      "acum": 0,
+      "cor": "#f59e0b",
+      "enc": false,
+      "ativo": true
+    },
+    {
+      "n": 2,
+      "s": "05/03→11/03",
+      "lote": "3º Lote — Abertura",
+      "meta": 60,
+      "real": null,
+      "acum": 60,
+      "cor": "#6366f1",
+      "enc": false,
+      "ativo": false
+    },
+    {
+      "n": 3,
+      "s": "12/03→16/03",
+      "lote": "3º Lote — Fechamento",
+      "meta": 110,
+      "real": null,
+      "acum": 170,
+      "cor": "#6366f1",
+      "enc": false,
+      "ativo": false
+    },
+    {
+      "n": 4,
+      "s": "16/03→26/03",
+      "lote": "3º Reabertura",
+      "meta": 120,
+      "real": null,
+      "acum": 290,
+      "cor": "#8b5cf6",
+      "enc": false,
+      "ativo": false
+    },
+    {
+      "n": 5,
+      "s": "26/03→01/04",
+      "lote": "4º Lote — Abertura",
+      "meta": 90,
+      "real": null,
+      "acum": 380,
+      "cor": "#10b981",
+      "enc": false,
+      "ativo": false
+    },
+    {
+      "n": 6,
+      "s": "02/04→07/04",
+      "lote": "4º Lote — Fechamento",
+      "meta": 110,
+      "real": null,
+      "acum": 490,
+      "cor": "#10b981",
+      "enc": false,
+      "ativo": false
+    },
+    {
+      "n": 7,
+      "s": "07/04→13/04",
+      "lote": "Último Lote — Abertura",
+      "meta": 120,
+      "real": null,
+      "acum": 610,
+      "cor": "#ec4899",
+      "enc": false,
+      "ativo": false
+    },
+    {
+      "n": 8,
+      "s": "14/04→19/04",
+      "lote": "Último Lote — Fechamento",
+      "meta": 142,
+      "real": null,
+      "acum": 752,
+      "cor": "#ec4899",
+      "enc": false,
+      "ativo": false
+    },
+    {
+      "n": 9,
+      "s": "19/04→22/04",
+      "lote": "Sprint Final 72h",
+      "meta": 165,
+      "real": null,
+      "acum": 917,
+      "cor": "#ef4444",
+      "enc": false,
+      "ativo": false
+    }
+  ],
+  "fechamentos": [
+    {
+      "lote": "2º Lote Reabertura",
+      "tier": "PLATINUM",
+      "data": "26/02 às 21h59",
+      "cor": "#a78bfa",
+      "status": "ENCERRADO"
+    },
+    {
+      "lote": "2º Lote Reabertura",
+      "tier": "VIP",
+      "data": "03/03 às 21h59",
+      "cor": "#60a5fa",
+      "status": "ENCERRADO"
+    },
+    {
+      "lote": "2º Lote Reabertura",
+      "tier": "EXPERIENCE + Reab.",
+      "data": "05/03 às 21h59",
+      "cor": "#34d399",
+      "status": "ATIVO"
+    },
+    {
+      "lote": "3º Lote",
+      "tier": "PLATINUM",
+      "data": "10/03 às 21h59",
+      "cor": "#a78bfa",
+      "status": "PRÓXIMO"
+    },
+    {
+      "lote": "3º Lote",
+      "tier": "VIP",
+      "data": "12/03 às 21h59",
+      "cor": "#60a5fa",
+      "status": "PRÓXIMO"
+    },
+    {
+      "lote": "3º Lote Reabertura",
+      "tier": "PLATINUM + VIP",
+      "data": "16/03 às 07h59",
+      "cor": "#8b5cf6",
+      "status": "PRÓXIMO"
+    },
+    {
+      "lote": "3º Lote",
+      "tier": "EXPERIENCE + 3º Lote Geral",
+      "data": "16/03 às 21h59",
+      "cor": "#34d399",
+      "status": "PRÓXIMO"
+    },
+    {
+      "lote": "4º Lote",
+      "tier": "Abertura Geral",
+      "data": "26/03",
+      "cor": "#10b981",
+      "status": "PRÓXIMO"
+    },
+    {
+      "lote": "Último Lote",
+      "tier": "Abertura Geral",
+      "data": "07/04",
+      "cor": "#ec4899",
+      "status": "PRÓXIMO"
+    },
+    {
+      "lote": "Sprint Final",
+      "tier": "ENCERRAMENTO GERAL",
+      "data": "22/04 às 23h59",
+      "cor": "#ef4444",
+      "status": "PRÓXIMO"
+    }
+  ],
+  "analises": {
+    "acertos": [
+      "Receita acumulada quase idêntica ao ano passado (~R$ 408k vs R$ 409k), com ticket médio maior por ingresso — sinal de posicionamento mais premium.",
+      "Platinum 2026 avançou de 6% para 8% do mix — a categoria premium está sendo mais comprada, indicando percepção de valor maior.",
+      "Pré-venda 2026 foi mais forte: 230 ingressos vs 68 no mesmo período do 2025 (Pré-venda Teatro apenas). A base de compradores antecipados é maior.",
+      "Vendas em grupo mais expressivas em 2026 (grupos de 18 e 10 na pré-venda) — viralização comunitária funcionando.",
+      "Abertura do 3º Lote em 05/03 está dentro do calendário correto — no 2025, o 3º lote abriu em 12/02, mas o ciclo 2026 tem estrutura diferente."
+    ],
+    "atencao": [
+      "1º Lote 2026 (68 ingressos) caiu vs 2025 (115). Queda de -41%. Parte da demanda foi antecipada pela pré-venda concentrada em dez/2025, mas os lotes intermediários precisam compensar.",
+      "2º Lote 2026 (26 ingressos) muito abaixo do 2025 (92). A reabertura do 2º lote trouxe apenas 30. Total do período equivalente = 56 vs 92 — gap de 39%.",
+      "VIP com leve retração proporcional: caiu de 28% para 26% do mix. O upsell VIP precisa de atenção especial nos próximos lotes.",
+      "Chargebacks e reembolsos da pré-venda 2026 estão proporcionalmente maiores que 2025 — pode indicar comunicação de produto mal calibrada ou leads não qualificados.",
+      "Gap de 30 dias sem movimento entre Pré-venda Reabertura (19/12) e 1º Lote (19/01) — esse período gerou queda de momentum. Em 2025, o gap era menor.",
+      "Com os dias restantes e ingressos para fechar, a média necessária é de ~16 ingressos/dia — ritmo 2,8x maior que o atual."
+    ],
+    "acoes": [
+      "3º LOTE: Comunicar abertura com força máxima nos primeiros 3 dias (05-07/03). No 2025, o 3º lote foi o maior (162 ingressos) — precisa de aquecimento intenso.",
+      "PLATINUM urgente até 10/03: 6 dias para converter compradores de tier alto. Comunicação específica para o perfil Platinum — não misturar com oferta geral.",
+      "UPSELL VIP: Criar oferta de upgrade Experience → VIP com condição especial por 72h, ativa entre 08 e 12/03, antes do fechamento VIP.",
+      "CÍRCULO SDA: Ativar programa de indicação imediatamente para todos os compradores atuais. Cada um deles pode trazer 1-2 pessoas antes do 3º lote fechar.",
+      "REATIVAR LEADS FRIOS: Sequência de 3 e-mails para quem visitou a página mas não comprou — o 3º lote é o gatilho perfeito de urgência.",
+      "META MARÇO: Objetivo de chegar em 644 ingressos ao fechar 26/03. Esse número define se abril é celebração ou corrida desesperada.",
+      "WEBINÁRIO GRATUITO: Uma aula/live com conteúdo real do SDA 2026 entre 10-15/03 converte audiência morna em compradores quentes para o fechamento do 3º lote."
+    ],
+    "projecao": [
+      "No SDA 2025, os lotes 3º, 4º, Último e Sprint = 709 ingressos (56% do total). Para 2026 atingir 1.271, precisa de 917 ingressos nos mesmos lotes.",
+      "Isso significa 29% a mais que o ano passado nos lotes finais — é ambicioso mas possível se a base de compradores é maior e os grupos continuam crescendo.",
+      "Se o ritmo for igual ao 2025 (709 nos lotes restantes), o total seria 354 + 709 = 1.063 — ficaria 208 abaixo da meta. Precisam de +30% de performance.",
+      "Último Lote é sempre o mais forte: no 2025 = 243 ingressos. Para 2026 está previsto 280 (+15%). Com urgência bem comunicada, é viável."
+    ]
+  }
+}
