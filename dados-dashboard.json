@@ -1,13 +1,13 @@
 {
-  "ts": "04/03/2026 17:58:49",
+  "ts": "05/03/2026 14:39:21",
   "resumo": {
-    "vendidos2026": 359,
-    "receita2026": 393660.18,
-    "faltam": 912,
+    "vendidos2026": 367,
+    "receita2026": 402786.18,
+    "faltam": 904,
     "meta": 1271,
-    "pct": 28,
-    "mediaDia": 18.6,
-    "diasRestantes": 49,
+    "pct": 29,
+    "mediaDia": 18.8,
+    "diasRestantes": 48,
     "total2025": 1177,
     "receita2025": 1469861.6799999997
   },
@@ -51,8 +51,8 @@
     {
       "fase": "2º Lote",
       "periodo": "Fev/2026",
-      "qtd": 96,
-      "receita": 122402.4,
+      "qtd": 104,
+      "receita": 131528.4,
       "cor": "#f59e0b",
       "encerrado": true,
       "meta": null
@@ -212,10 +212,10 @@
     "dias_antes": "-"
   },
   "corte2026": {
-    "qtd": 359,
-    "receita": 393660.18,
-    "data": "04/03/2026",
-    "dias_antes": 51
+    "qtd": 367,
+    "receita": 402786.18,
+    "data": "05/03/2026",
+    "dias_antes": 50
   },
   "mix2025": [
     {
@@ -260,19 +260,19 @@
       "real": 0,
       "acum": 0,
       "cor": "#f59e0b",
-      "enc": false,
-      "ativo": true
+      "enc": true,
+      "ativo": false
     },
     {
       "n": 2,
       "s": "05/03→11/03",
       "lote": "3º Lote — Abertura",
       "meta": 60,
-      "real": null,
-      "acum": 60,
+      "real": 0,
+      "acum": 0,
       "cor": "#6366f1",
       "enc": false,
-      "ativo": false
+      "ativo": true
     },
     {
       "n": 3,
@@ -280,7 +280,7 @@
       "lote": "3º Lote — Fechamento",
       "meta": 110,
       "real": null,
-      "acum": 170,
+      "acum": 110,
       "cor": "#6366f1",
       "enc": false,
       "ativo": false
@@ -291,7 +291,7 @@
       "lote": "3º Reabertura",
       "meta": 120,
       "real": null,
-      "acum": 290,
+      "acum": 230,
       "cor": "#8b5cf6",
       "enc": false,
       "ativo": false
@@ -302,7 +302,7 @@
       "lote": "4º Lote — Abertura",
       "meta": 90,
       "real": null,
-      "acum": 380,
+      "acum": 320,
       "cor": "#10b981",
       "enc": false,
       "ativo": false
@@ -313,7 +313,7 @@
       "lote": "4º Lote — Fechamento",
       "meta": 110,
       "real": null,
-      "acum": 490,
+      "acum": 430,
       "cor": "#10b981",
       "enc": false,
       "ativo": false
@@ -324,7 +324,7 @@
       "lote": "Último Lote — Abertura",
       "meta": 120,
       "real": null,
-      "acum": 610,
+      "acum": 550,
       "cor": "#ec4899",
       "enc": false,
       "ativo": false
@@ -335,7 +335,7 @@
       "lote": "Último Lote — Fechamento",
       "meta": 142,
       "real": null,
-      "acum": 752,
+      "acum": 692,
       "cor": "#ec4899",
       "enc": false,
       "ativo": false
@@ -346,7 +346,7 @@
       "lote": "Sprint Final 72h",
       "meta": 165,
       "real": null,
-      "acum": 917,
+      "acum": 857,
       "cor": "#ef4444",
       "enc": false,
       "ativo": false
