@@ -59,7 +59,6 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .tit{font-family:"Bebas Neue",sans-serif;font-size:clamp(16px,2vw,28px);letter-spacing:3px;color:var(--br);text-align:center;line-height:1.05;}
 .tit span{color:var(--g);}
 
-/* Totais gerais */
 .total-box{width:100%;background:rgba(76,175,3,.07);border:1px solid rgba(76,175,3,.25);border-radius:12px;padding:clamp(8px,1.1vh,14px) clamp(8px,0.9vw,14px);}
 .total-tit{font-size:clamp(7px,0.7vw,10px);font-weight:700;letter-spacing:3px;color:var(--g);text-transform:uppercase;margin-bottom:8px;text-align:center;}
 .total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;}
@@ -68,7 +67,6 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .total-val span{font-size:clamp(10px,1vw,14px);color:var(--ci);}
 .sep-line{width:100%;height:1px;background:#222;margin:6px 0;}
 
-/* Canais totais */
 .canal-box{width:100%;display:flex;flex-direction:column;gap:clamp(5px,0.8vh,9px);}
 .canal-tit{font-size:clamp(7px,0.7vw,10px);font-weight:700;letter-spacing:3px;color:var(--g);text-transform:uppercase;text-align:center;margin-bottom:2px;}
 .canal-item{background:var(--c2);border-radius:8px;padding:clamp(5px,0.7vh,8px) clamp(7px,0.8vw,12px);border-left:3px solid var(--g);}
@@ -100,7 +98,6 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .panel-tit{font-family:"Bebas Neue",sans-serif;font-size:clamp(10px,1vw,14px);letter-spacing:4px;color:var(--g);text-transform:uppercase;display:flex;align-items:center;gap:6px;padding-bottom:6px;border-bottom:2px solid var(--g);flex-shrink:0;}
 .dot{display:inline-block;width:7px;height:7px;background:var(--g);border-radius:50%;animation:pulse 1.5s infinite;flex-shrink:0;}
 
-/* Lote vigente destaque */
 .lote-vigente{flex-shrink:0;}
 .lv-card{background:linear-gradient(90deg,rgba(76,175,3,.12),rgba(76,175,3,.04));border:1px solid rgba(76,175,3,.4);border-radius:14px;padding:clamp(10px,1.4vh,18px) clamp(14px,1.6vw,24px);display:flex;align-items:center;gap:clamp(12px,1.5vw,24px);}
 .lv-nome{font-family:"Bebas Neue",sans-serif;font-size:clamp(18px,2.2vw,32px);letter-spacing:2px;color:var(--g);flex:1;}
@@ -126,7 +123,6 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .lv-total-qtd{font-family:"Bebas Neue",sans-serif;font-size:clamp(32px,4.5vw,64px);color:var(--g);line-height:1;text-shadow:0 0 20px rgba(76,175,3,.4);}
 .lv-total-val{font-size:clamp(10px,1vw,14px);font-weight:700;color:var(--ci);}
 
-/* Lista de lotes anteriores */
 .lotes-lista{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:clamp(5px,0.8vh,9px);}
 .lotes-scroll{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:clamp(4px,0.7vh,8px);}
 .lote-card{background:var(--c2);border:1px solid #1e1e1e;border-radius:10px;padding:clamp(7px,1vh,12px) clamp(10px,1.2vw,18px);display:flex;align-items:center;gap:clamp(10px,1.2vw,20px);flex-shrink:0;}
@@ -236,6 +232,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 <div class="tk"><div class="tkl">SDA 2026</div><div class="tkc" id="tkc">—</div></div>
 
 <script>
+// ✅ CORREÇÃO: raw.githubusercontent não tem cache CDN como o GitHub Pages
 var JSON_URL = 'https://raw.githubusercontent.com/petterson-bot/sda2026-tv/main/dados-lotes.json';
 
 function fmtVal(v) {
@@ -246,8 +243,6 @@ function fmtVal(v) {
 
 function renderLvCard(lote, fotos) {
   fotos = fotos || {};
-  // badge % vs lote anterior
-  var pctHtml = ''; // removido por solicitação
   function fotoTag(src, nome) {
     if (src) return '<img src="'+src+'" class="lv-canal-foto" onerror="this.style.display=\'none\'">';
     return '<div style="width:42px;height:42px;border-radius:50%;background:#222;display:flex;align-items:center;justify-content:center;font-family:\'Bebas Neue\',sans-serif;font-size:20px;flex-shrink:0;">'+nome+'</div>';
@@ -279,21 +274,19 @@ function renderLoteCard(lote) {
 }
 
 function render(d) {
-  // Totais laterais
   var meta = 1271;
   var tot  = d.totalGeral.qtd;
   var pct  = meta > 0 ? (tot/meta*100) : 0;
   var falt = Math.max(meta - tot, 0);
-  document.getElementById('tot-qtd').textContent  = tot;
-  document.getElementById('tot-val').textContent  = fmtVal(d.totalGeral.valor);
-  document.getElementById('tot-meta').textContent = meta;
-  document.getElementById('tot-meta2').textContent= meta;
-  document.getElementById('tot-bar').style.width  = Math.min(pct,100).toFixed(1)+'%';
-  document.getElementById('tot-pct').textContent  = pct.toFixed(1)+'% atingido';
-  document.getElementById('tot-rest').textContent = (falt/meta*100).toFixed(1)+'% restante';
-  document.getElementById('tot-falt').textContent = falt;
+  document.getElementById('tot-qtd').textContent   = tot;
+  document.getElementById('tot-val').textContent   = fmtVal(d.totalGeral.valor);
+  document.getElementById('tot-meta').textContent  = meta;
+  document.getElementById('tot-meta2').textContent = meta;
+  document.getElementById('tot-bar').style.width   = Math.min(pct,100).toFixed(1)+'%';
+  document.getElementById('tot-pct').textContent   = pct.toFixed(1)+'% atingido';
+  document.getElementById('tot-rest').textContent  = (falt/meta*100).toFixed(1)+'% restante';
+  document.getElementById('tot-falt').textContent  = falt;
 
-  // Canal cards na área principal
   var fotos = d.fotos || {};
   var canalCards = document.getElementById('canal-cards');
   canalCards.innerHTML = '';
@@ -318,22 +311,19 @@ function render(d) {
     canalCards.appendChild(el);
   });
 
-  document.getElementById('atu').textContent = 'Dados: '+d.ts;
+  document.getElementById('atu').textContent = 'Atualizado: '+d.ts+' · Próximo em 60s';
 
-  // Lote vigente
   if (d.lotes && d.lotes.length > 0) {
     document.getElementById('lv-card').innerHTML = renderLvCard(d.lotes[0], d.fotos);
   }
 
-  // Todos os lotes (a partir do 2°)
   var scroll = document.getElementById('lotes-scroll');
   scroll.innerHTML = '';
   d.lotes.forEach(function(lote, i) {
-    if (i === 0) return; // vigente já aparece em cima
+    if (i === 0) return;
     scroll.appendChild(renderLoteCard(lote));
   });
 
-  // Ticker
   var tk = ['TOTAL: '+d.totalGeral.qtd+' ingressos  ·  '+fmtVal(d.totalGeral.valor)];
   tk.push('TRÁFEGO: '+d.totalGeral.trafico.qtd+' ingressos  ·  '+fmtVal(d.totalGeral.trafico.valor));
   tk.push('COMERCIAL: '+d.totalGeral.comercial.qtd+' ingressos  ·  '+fmtVal(d.totalGeral.comercial.valor));
@@ -345,10 +335,11 @@ function render(d) {
 }
 
 function buscar() {
-  fetch(JSON_URL+'?t='+Date.now())
+  // Cache-bust com timestamp garante que o navegador não reutilize resposta antiga
+  fetch(JSON_URL + '?t=' + Date.now(), { cache: 'no-store' })
     .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(function(d){ render(d); })
-    .catch(function(e){ document.getElementById('atu').textContent = 'Erro: '+e.message; });
+    .catch(function(e){ document.getElementById('atu').textContent = 'Erro ao buscar: '+e.message; });
 }
 
 function tick() {
