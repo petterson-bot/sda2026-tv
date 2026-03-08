@@ -1,9 +1,9 @@
 {
-  "ts": "08/03/2026 14:28:19",
+  "ts": "08/03/2026 14:29:19",
   "resumo": {
-    "vendidos2026": 379,
-    "receita2026": 414697.18,
-    "faltam": 892,
+    "vendidos2026": 380,
+    "receita2026": 416294.18,
+    "faltam": 891,
     "meta": 1271,
     "pct": 30,
     "mediaDia": 19.8,
@@ -69,8 +69,8 @@
     {
       "fase": "3º Lote",
       "periodo": "05/03→16/03",
-      "qtd": 4,
-      "receita": 3788,
+      "qtd": 5,
+      "receita": 5385,
       "cor": "#ec4899",
       "encerrado": false,
       "meta": 180
@@ -212,8 +212,8 @@
     "dias_antes": "-"
   },
   "corte2026": {
-    "qtd": 379,
-    "receita": 414697.18,
+    "qtd": 380,
+    "receita": 416294.18,
     "data": "08/03/2026",
     "dias_antes": 47
   },
