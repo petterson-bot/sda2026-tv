@@ -1,5 +1,5 @@
 {
-  "ts": "11/03/2026 23:59:43",
+  "ts": "12/03/2026 00:00:44",
   "resumo": {
     "vendidos2026": 393,
     "receita2026": 435005.18,
@@ -214,7 +214,7 @@
   "corte2026": {
     "qtd": 393,
     "receita": 435005.18,
-    "data": "11/03/2026",
+    "data": "12/03/2026",
     "dias_antes": 43
   },
   "mix2025": [
@@ -279,11 +279,11 @@
       "s": "12/03→16/03",
       "lote": "3º Lote — Fechamento",
       "meta": 110,
-      "real": null,
-      "acum": 110,
+      "real": 0,
+      "acum": 0,
       "cor": "#6366f1",
       "enc": false,
-      "ativo": false
+      "ativo": true
     },
     {
       "n": 4,
@@ -291,7 +291,7 @@
       "lote": "3º Reabertura",
       "meta": 120,
       "real": null,
-      "acum": 230,
+      "acum": 120,
       "cor": "#8b5cf6",
       "enc": false,
       "ativo": false
@@ -302,7 +302,7 @@
       "lote": "4º Lote — Abertura",
       "meta": 90,
       "real": null,
-      "acum": 320,
+      "acum": 210,
       "cor": "#10b981",
       "enc": false,
       "ativo": false
@@ -313,7 +313,7 @@
       "lote": "4º Lote — Fechamento",
       "meta": 110,
       "real": null,
-      "acum": 430,
+      "acum": 320,
       "cor": "#10b981",
       "enc": false,
       "ativo": false
@@ -324,7 +324,7 @@
       "lote": "Último Lote — Abertura",
       "meta": 120,
       "real": null,
-      "acum": 550,
+      "acum": 440,
       "cor": "#ec4899",
       "enc": false,
       "ativo": false
@@ -335,7 +335,7 @@
       "lote": "Último Lote — Fechamento",
       "meta": 142,
       "real": null,
-      "acum": 692,
+      "acum": 582,
       "cor": "#ec4899",
       "enc": false,
       "ativo": false
@@ -346,7 +346,7 @@
       "lote": "Sprint Final 72h",
       "meta": 165,
       "real": null,
-      "acum": 857,
+      "acum": 747,
       "cor": "#ef4444",
       "enc": false,
       "ativo": false
