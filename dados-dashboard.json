@@ -1,5 +1,5 @@
 {
-  "ts": "12/03/2026 21:58:53",
+  "ts": "12/03/2026 21:59:52",
   "resumo": {
     "vendidos2026": 403,
     "receita2026": 451025.18,
@@ -386,14 +386,14 @@
       "tier": "VIP",
       "data": "12/03 às 21h59",
       "cor": "#60a5fa",
-      "status": "ATIVO"
+      "status": "ENCERRADO"
     },
     {
       "lote": "3º Lote Reabertura",
       "tier": "PLATINUM + VIP",
       "data": "16/03 às 07h59",
       "cor": "#8b5cf6",
-      "status": "PRÓXIMO"
+      "status": "ATIVO"
     },
     {
       "lote": "3º Lote",
