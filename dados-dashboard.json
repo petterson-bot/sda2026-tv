@@ -1,13 +1,13 @@
 {
-  "ts": "13/03/2026 20:59:51",
+  "ts": "13/03/2026 21:00:51",
   "resumo": {
     "vendidos2026": 414,
     "receita2026": 465342.18,
     "faltam": 857,
     "meta": 1271,
     "pct": 33,
-    "mediaDia": 21.4,
-    "diasRestantes": 40,
+    "mediaDia": 22,
+    "diasRestantes": 39,
     "total2025": 1177,
     "receita2025": 1469861.6799999997
   },
@@ -215,7 +215,7 @@
     "qtd": 414,
     "receita": 465342.18,
     "data": "13/03/2026",
-    "dias_antes": 42
+    "dias_antes": 41
   },
   "mix2025": [
     {
