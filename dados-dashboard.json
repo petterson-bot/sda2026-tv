@@ -1,13 +1,13 @@
 {
-  "ts": "16/03/2026 10:18:51",
+  "ts": "20/03/2026 14:33:20",
   "resumo": {
-    "vendidos2026": 423,
-    "receita2026": 475862.18,
-    "faltam": 848,
+    "vendidos2026": 442,
+    "receita2026": 499799.18,
+    "faltam": 829,
     "meta": 1271,
-    "pct": 33,
-    "mediaDia": 22.9,
-    "diasRestantes": 37,
+    "pct": 35,
+    "mediaDia": 25.1,
+    "diasRestantes": 33,
     "total2025": 1177,
     "receita2025": 1469861.6799999997
   },
@@ -69,8 +69,8 @@
     {
       "fase": "3º Lote",
       "periodo": "05/03→16/03",
-      "qtd": 46,
-      "receita": 61859,
+      "qtd": 63,
+      "receita": 83302,
       "cor": "#ec4899",
       "encerrado": false,
       "meta": 180
@@ -212,10 +212,10 @@
     "dias_antes": "-"
   },
   "corte2026": {
-    "qtd": 423,
-    "receita": 475862.18,
-    "data": "16/03/2026",
-    "dias_antes": 39
+    "qtd": 442,
+    "receita": 499799.18,
+    "data": "20/03/2026",
+    "dias_antes": 35
   },
   "mix2025": [
     {
@@ -400,14 +400,14 @@
       "tier": "EXPERIENCE + 3º Lote Geral",
       "data": "16/03 às 21h59",
       "cor": "#34d399",
-      "status": "ATIVO"
+      "status": "ENCERRADO"
     },
     {
       "lote": "4º Lote",
       "tier": "Abertura Geral",
       "data": "26/03",
       "cor": "#10b981",
-      "status": "PRÓXIMO"
+      "status": "ATIVO"
     },
     {
       "lote": "Último Lote",
