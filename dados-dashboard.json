@@ -1,13 +1,13 @@
 {
-  "ts": "20/03/2026 16:28:22",
+  "ts": "23/03/2026 11:22:59",
   "resumo": {
-    "vendidos2026": 444,
-    "receita2026": 502993.18,
-    "faltam": 827,
+    "vendidos2026": 459,
+    "receita2026": 522948.18,
+    "faltam": 812,
     "meta": 1271,
-    "pct": 35,
-    "mediaDia": 25.1,
-    "diasRestantes": 33,
+    "pct": 36,
+    "mediaDia": 27.1,
+    "diasRestantes": 30,
     "total2025": 1177,
     "receita2025": 1469861.6799999997
   },
@@ -212,10 +212,10 @@
     "dias_antes": "-"
   },
   "corte2026": {
-    "qtd": 444,
-    "receita": 502993.18,
-    "data": "20/03/2026",
-    "dias_antes": 35
+    "qtd": 459,
+    "receita": 522948.18,
+    "data": "23/03/2026",
+    "dias_antes": 32
   },
   "mix2025": [
     {
